@@ -1,5 +1,5 @@
 .note {
-  background: #fff;
+  background: var(--white);
   border-radius: 7px;
   box-shadow: 0 2px 5px #170017;
   padding: 10px;
@@ -8,11 +8,11 @@
   float: left;
 }
 .note h1 {
-  font-size: 1.1em;
+  font-size: 18px;
   margin-bottom: 6px;
 }
 .note p {
-  font-size: 1.1em;
+  font-size: 18px;
   margin-bottom: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -34,7 +34,7 @@ form.create-note {
   position: relative;
   width: 480px;
   margin: 30px auto 20px auto;
-  background: #fff;
+  background: var(--white);
   padding: 15px;
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
