@@ -1,5 +1,7 @@
 import "./LandingPage.css";
+import { useNavigate } from "react-router-dom";
 const LandingPage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div class="landing-container">
@@ -9,7 +11,9 @@ const LandingPage = () => {
           </h1>
           <h3>Your personal quick note taking app</h3>
           <p>Log in to say hi to your new buddy!</p>
-          <button class="primary-button">Log In</button>
+          <button class="primary-button" onClick={() => navigate("/login")}>
+            Log In
+          </button>
         </div>
 
         <div class="landing-image">
