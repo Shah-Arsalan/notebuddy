@@ -15,7 +15,7 @@ const LandingPage = () => {
         <div class="landing-image">
           <img
             src="https://res.cloudinary.com/dg9tbhjxx/image/upload/v1648225981/hero_i6yhx3.png"
-            alt="image"
+            alt="logo-icon"
           />
         </div>
       </div>
