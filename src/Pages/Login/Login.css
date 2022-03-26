@@ -1,0 +1,62 @@
+.login-container {
+  color: var(--white);
+  font-family: roboto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-inputs {
+  background-color: var(--primary-color);
+  width: 25rem;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-box);
+  align-items: center;
+}
+
+.forgot-password a {
+  margin-left: auto;
+  text-decoration: none;
+}
+
+.login-container button {
+  width: 100%;
+}
+
+.login-container a {
+  text-decoration: none;
+  justify-content: center;
+}
+
+input[type="password"] {
+  border: 1px solid;
+}
+
+input[type="email"] {
+  border: 1px solid;
+}
+
+.signup-input {
+  cursor: pointer;
+}
+
+.signup-input:hover {
+  color: var(--primary-color);
+}
+
+.primary-button-login {
+  color: var(--hover);
+  color: var(--white);
+}
+
+.input {
+  color: var(--white);
+}
+
+.signup-link:hover {
+  color: var(--hover);
+}
