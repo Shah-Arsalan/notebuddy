@@ -1,30 +1,132 @@
 import "./Input.css";
 import AddIcon from "@mui/icons-material/Add";
-import Button from "@material-ui/core/Button";
+
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
-
 import { useState } from "react";
+import axios from "axios";
+import { useAuth, useData } from "../../Contexts";
 
-const Input = () => {
+const Input = ({ inputObject, setEdit }) => {
+  const { token } = useAuth();
+  const { dispatch } = useData();
   const [expansion, setExpansion] = useState(false);
+  const date = new Date();
+  const initialState = {
+    title: "",
+    content: "",
+    timeCreated: `${date.getDate()} - 
+  ${date.getMonth() + 1} -
+  ${date.getFullYear()}`,
+    backgroundColor: "#FFFFFF",
+  };
+  const [note, setNote] = useState(inputObject ? inputObject : initialState);
+
   function appear() {
     setExpansion(true);
   }
+
+  const noteHandler = async () => {
+    try {
+      let res = null;
+      if (inputObject) {
+        res = await axios.post(
+          `/api/notes/${inputObject._id}`,
+          {
+            note,
+          },
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
+      } else {
+        res = await axios.post(
+          "/api/notes",
+          { note },
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
+      }
+
+      if (res.status === 200 || res.status === 201) {
+        dispatch({
+          type: "ENTERNOTE",
+          payload: { note: res.data.notes },
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
-      <div>
-        <form className="create-note">
-          {expansion ? <input name="title" placeholder="Title" /> : null}
+      <div className={`${inputObject && "active-outer"}`}>
+        <form
+          style={{
+            backgroundColor: inputObject
+              ? inputObject.backgroundColor
+              : "var(--white)",
+          }}
+          className="create-note"
+          onSubmit={(e) => {
+            e.preventDefault();
+            noteHandler();
+            setNote({
+              title: "",
+              content: "",
+              backgroundColor: note.backgroundColor,
+              timeCreated: note.timeCreated,
+            });
+            inputObject && setEdit(false);
+          }}
+        >
+          {expansion ? (
+            <input
+              value={note.title}
+              onChange={(e) => setNote({ ...note, title: e.target.value })}
+              name="title"
+              placeholder="Title"
+              style={{
+                backgroundColor: inputObject
+                  ? inputObject.backgroundColor
+                  : "var(--white)",
+              }}
+            />
+          ) : null}
           <textarea
+            value={note.content}
+            onChange={(e) => setNote({ ...note, content: e.target.value })}
             onClick={appear}
             id="MyText"
             name="content"
             placeholder="Take a note..."
             rows={expansion ? 4 : 1}
+            style={{
+              backgroundColor: inputObject
+                ? inputObject.backgroundColor
+                : "var(--white)",
+            }}
           />
+
+          {expansion && (
+            <input
+              value={note.backgroundColor}
+              type="color"
+              className="color-input"
+              onChange={(e) => {
+                setNote({ ...note, backgroundColor: e.target.value });
+              }}
+            />
+          )}
+
           <Zoom in={true}>
-            <Fab>
+            <Fab type="submit">
               <AddIcon />
             </Fab>
           </Zoom>
