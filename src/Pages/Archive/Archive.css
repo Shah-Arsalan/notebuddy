@@ -1,0 +1,8 @@
+.archive-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: flex-start;
+  flex-grow: 1;
+}

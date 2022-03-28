@@ -1,5 +1,6 @@
 const initialState = {
   notes: [],
+  archives: [],
 };
 
 const DataReducer = (state, action) => {
@@ -9,6 +10,13 @@ const DataReducer = (state, action) => {
       return {
         ...state,
         notes: [...payload.note],
+      };
+    }
+
+    case "ARCHIVE": {
+      return {
+        ...state,
+        archives: [...payload.archives],
       };
     }
     default:

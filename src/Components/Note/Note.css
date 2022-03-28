@@ -50,3 +50,10 @@ form.create-note {
 .fa-edit:hover {
   color: var(--hover);
 }
+.fa-archive:hover {
+  color: var(--hover);
+}
+
+.fa-arrow-up:hover {
+  color: var(--hover);
+}

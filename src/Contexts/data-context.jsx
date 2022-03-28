@@ -19,6 +19,10 @@ const DataProvider = ({ children }) => {
         type: "ENTERNOTE",
         payload: { note: user.notes },
       });
+      dispatch({
+        type: "ARCHIVE",
+        payload: { archives: user.archives },
+      });
     }
   }, [token]);
 
