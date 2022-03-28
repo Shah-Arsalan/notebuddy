@@ -25,8 +25,10 @@ const AuthProvider = ({ children }) => {
             activeUser: response.data.foundUser,
           })
         );
-        setToken(response.data.encodedToken);
+        console.log("checking : ", response);
+        console.log("checking : ", response.data.foundUser);
         setUser(response.data.foundUser);
+        setToken(response.data.encodedToken);
       }
     } catch (error) {
       console.log(error);
@@ -49,8 +51,10 @@ const AuthProvider = ({ children }) => {
             activeUser: response.data.foundUser,
           })
         );
+        console.log("checking 2 : ", response);
+        console.log("checking 2 : ", response.data.createdUser);
+        setUser(response.data.createdUser);
         setToken(response.data.encodedToken);
-        setUser(response.data.foundUser);
       }
     } catch (error) {
       console.log(error);
