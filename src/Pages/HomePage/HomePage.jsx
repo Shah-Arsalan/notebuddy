@@ -5,7 +5,6 @@ import { useData } from "../../Contexts";
 const HomePage = () => {
   const { state } = useData();
   const { notes } = state;
-  console.log("checking", notes);
   return (
     <>
       <div className="home-container">
