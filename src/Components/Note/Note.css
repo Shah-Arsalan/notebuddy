@@ -2,10 +2,9 @@
   background: var(--white);
   border-radius: 7px;
   box-shadow: 0 2px 5px #170017;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   width: 240px;
   margin: 16px;
-  float: left;
 }
 .note h1 {
   font-size: 18px;
@@ -14,20 +13,7 @@
 .note p {
   font-size: 18px;
   margin-bottom: 10px;
-  white-space: pre-wrap;
   word-wrap: break-word;
-}
-
-.note button {
-  position: relative;
-  float: right;
-  margin-right: 10px;
-  color: var(--primary-color);
-  border: none;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  outline: none;
 }
 
 form.create-note {
@@ -38,4 +24,29 @@ form.create-note {
   padding: 15px;
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+
+.note-features {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time {
+  font-size: 1px;
+}
+
+.note .time {
+  font-size: 15px;
+}
+
+.note-features .fa-edit {
+  margin-bottom: 5px;
+}
+
+.note-features .fa-trash-alt:hover {
+  color: var(--hover);
+}
+.fa-edit:hover {
+  color: var(--hover);
 }

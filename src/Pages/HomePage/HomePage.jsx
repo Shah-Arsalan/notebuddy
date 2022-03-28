@@ -1,7 +1,11 @@
 import "./HomePage.css";
 import { Sidebar, Input, Note } from "../../Components";
+import { useData } from "../../Contexts";
 
 const HomePage = () => {
+  const { state } = useData();
+  const { notes } = state;
+  console.log("checking", notes);
   return (
     <>
       <div className="home-container">
@@ -9,14 +13,9 @@ const HomePage = () => {
         <div className="input-note-container">
           <Input />
           <div className="note-container">
-            <Note />
-            <Note />
-            <Note />
-            <Note />
-            <Note />
-            <Note />
-            <Note />
-            <Note />
+            {notes.map((ele) => {
+              return <Note key={ele._id} ele={ele} />;
+            })}
           </div>
         </div>
       </div>
