@@ -15,7 +15,6 @@ const Note = ({ ele }) => {
   };
 
   const deleteHandler = async () => {
-    console.log(_id);
     try {
       const res = await axios.delete(`/api/notes/${_id}`, {
         headers: {
