@@ -8,7 +8,9 @@ const Labels = () => {
   console.log("length", notes.length);
   const tags = notes.reduce((acc, curr) => {
     return acc.concat(
-      acc.some((element) => element === curr.tag) ? [] : [curr.tag]
+      acc.some((element) => element === curr.tag || curr.tag === "")
+        ? []
+        : [curr.tag]
     );
   }, []);
   console.log(tags);
