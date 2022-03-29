@@ -27,6 +27,17 @@ const Sidebar = () => {
           </div>
 
           <div className="component-child">
+            <i class="fas fa-tag"></i>
+
+            <h3
+              className="component-content"
+              onClick={() => navigate("/labels")}
+            >
+              Labels
+            </h3>
+          </div>
+
+          <div className="component-child">
             <i className="fas fa-trash-alt"></i>
 
             <h3 className="component-content">Bin</h3>

@@ -31,7 +31,13 @@ form.create-note {
   align-items: center;
   justify-content: space-between;
 }
-
+.note .note-tag {
+  font-size: small;
+  border: 1px solid var(--primary-color);
+  width: max-content;
+  border-radius: 0.4rem;
+  padding: 0 0.5rem 0.2rem 0.5rem;
+}
 .time {
   font-size: 1px;
 }

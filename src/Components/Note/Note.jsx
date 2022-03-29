@@ -8,7 +8,7 @@ const Note = ({ ele, identifier }) => {
   const { token } = useAuth();
   const { dispatch } = useData();
   const [edit, setEdit] = useState(false);
-  const { title, content, timeCreated, backgroundColor, _id } = ele;
+  const { title, content, timeCreated, backgroundColor, _id, tag } = ele;
 
   const editHandler = () => {
     setEdit(true);
@@ -112,6 +112,7 @@ const Note = ({ ele, identifier }) => {
         <div className="note" style={{ backgroundColor }}>
           <h1>{title}</h1>
           <p>{content}</p>
+          {tag !== "" && <p className="note-tag">{tag}</p>}
 
           <div className="note-features">
             <p className="time">{timeCreated}</p>

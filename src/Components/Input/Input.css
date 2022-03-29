@@ -54,3 +54,20 @@ form.create-note .color-input {
   height: 30px;
   width: 50px;
 }
+
+.input-features {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input-features .tag-input {
+  font-size: small;
+  align-self: center;
+  padding-top: 0.5rem;
+}
+
+.separator {
+  align-self: center;
+}
