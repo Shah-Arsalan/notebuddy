@@ -16,19 +16,22 @@ const Labels = () => {
     <>
       <div className="home-container">
         <Sidebar />
-        <div className="archive-container"></div>
-        {tags.map((tag) => {
-          // individual tags eg work
-          const tagNotes = notes.filter((item) => item.tag === tag); // array of notes that have the similar tag
-          return (
-            <div key={tag}>
-              <h1 className="element-tag">{tag}</h1>
-              {tagNotes.map((note) => (
-                <Note ele={note} />
-              ))}
-            </div>
-          );
-        })}
+        <div className="tags-container">
+          {tags.map((tag) => {
+            const tagNotes = notes.filter((item) => item.tag === tag);
+            return (
+              <div key={tag} className="element-container">
+                <h1 className="element-tag">Label : {tag}</h1>
+                <div className="tags-inner-container">
+                  {" "}
+                  {tagNotes.map((note) => (
+                    <Note ele={note} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );
