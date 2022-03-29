@@ -5,7 +5,8 @@
   margin: auto;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  color: var(--hover);
+  font-family: var(--landing-page-font);
+  color: var(--label-title-color);
 }
 
 .element-container {
@@ -20,7 +21,6 @@
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
-  /* background-color: var(--primary-color); */
 }
 
 .tags-inner-container {
