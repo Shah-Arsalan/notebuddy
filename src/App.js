@@ -2,7 +2,7 @@ import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Nav } from "./Components";
-import { Archive, HomePage, LandingPage, Login, Signup } from "./Pages";
+import { Archive, HomePage, Labels, LandingPage, Login, Signup } from "./Pages";
 import { useAuth } from "./Contexts";
 
 function App() {
@@ -22,6 +22,10 @@ function App() {
         <Route
           path="/archive"
           element={token ? <Archive /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/labels"
+          element={token ? <Labels /> : <Navigate to="/" />}
         />
       </Routes>
     </div>

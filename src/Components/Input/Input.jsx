@@ -19,6 +19,7 @@ const Input = ({ inputObject, setEdit }) => {
   ${date.getMonth() + 1} -
   ${date.getFullYear()}`,
     backgroundColor: "#FFFFFF",
+    tag: "",
   };
   const [note, setNote] = useState(inputObject ? inputObject : initialState);
 
@@ -54,6 +55,7 @@ const Input = ({ inputObject, setEdit }) => {
       }
 
       if (res.status === 200 || res.status === 201) {
+        console.log("check", res.data.notes);
         dispatch({
           type: "ENTERNOTE",
           payload: { note: res.data.notes },
@@ -82,6 +84,7 @@ const Input = ({ inputObject, setEdit }) => {
               content: "",
               backgroundColor: note.backgroundColor,
               timeCreated: note.timeCreated,
+              tag: "",
             });
             inputObject && setEdit(false);
           }}
@@ -113,17 +116,32 @@ const Input = ({ inputObject, setEdit }) => {
                 : "var(--white)",
             }}
           />
+          <div className="input-features">
+            {expansion && (
+              <input
+                value={note.backgroundColor}
+                type="color"
+                className="color-input"
+                onChange={(e) => {
+                  setNote({ ...note, backgroundColor: e.target.value });
+                }}
+              />
+            )}
 
-          {expansion && (
-            <input
-              value={note.backgroundColor}
-              type="color"
-              className="color-input"
-              onChange={(e) => {
-                setNote({ ...note, backgroundColor: e.target.value });
-              }}
-            />
-          )}
+            {expansion && <p className="separator">|</p>}
+
+            {expansion && (
+              <input
+                placeholder="Add tag"
+                value={note.tag}
+                type="text"
+                className="tag-input"
+                onChange={(e) => {
+                  setNote({ ...note, tag: e.target.value });
+                }}
+              />
+            )}
+          </div>
 
           <Zoom in={true}>
             <Fab type="submit">
