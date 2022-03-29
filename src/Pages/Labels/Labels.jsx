@@ -23,7 +23,6 @@ const Labels = () => {
               <div key={tag} className="element-container">
                 <h1 className="element-tag">Label : {tag}</h1>
                 <div className="tags-inner-container">
-                  {" "}
                   {tagNotes.map((note) => (
                     <Note ele={note} />
                   ))}
