@@ -64,7 +64,7 @@
   position: relative;
   bottom: 1.9rem;
   right: -13rem;
-  background-color: white;
+  background-color: var(--white);
   cursor: pointer;
 }
 

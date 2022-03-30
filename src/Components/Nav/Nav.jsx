@@ -38,7 +38,7 @@ const Nav = () => {
               type="search"
               placeholder="Search by label ..."
             />
-            <span class="search__icon">
+            <span className="search__icon">
               <i class="fas fa-search"></i>
             </span>
             {searchValue !== "" && (
@@ -49,7 +49,7 @@ const Nav = () => {
                   dispatch({ type: "SEARCHRESET" });
                 }}
               >
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
               </span>
             )}
             <div>
@@ -118,8 +118,8 @@ const Nav = () => {
                 style={{ display: appear ? "block" : "none" }}
                 onClick={() => {
                   logoutHandler();
-                  navigate("/");
                   setAppear((prev) => !prev);
+                  navigate("/");
                 }}
               >
                 Logout

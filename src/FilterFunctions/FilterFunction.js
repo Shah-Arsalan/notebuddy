@@ -1,5 +1,4 @@
 const sortByTag = (state, data) => {
-  console.log("checking state", state);
   if (state.searched === "") {
     return data;
   }
@@ -9,7 +8,7 @@ const sortByTag = (state, data) => {
 };
 
 const sortByDate = (state, data) => {
-  if (state.data === "olsestFirst") {
+  if (state.data === "oldestFirst") {
     return data.sort((a, b) => b.timeCreated - a.timeCreated);
   } else {
     return data.sort((a, b) => a.timeCreated - b.timeCreated);
