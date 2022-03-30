@@ -6,6 +6,10 @@
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
+
+.nav-container-note {
+  align-items: baseline;
+}
 .logo {
   font-family: "McLaren", cursive;
 }
@@ -34,4 +38,83 @@
   padding: 0 0.5rem 0.5rem 0.5rem;
   color: var(--hover);
   cursor: pointer;
+}
+
+.search__box {
+  width: 100%;
+  border-radius: 5px;
+  padding: 0.7rem 0.4rem;
+  outline: none;
+  border-width: 0;
+  border: 1px solid;
+  padding-left: 3rem;
+  margin-top: 1rem;
+  border: 1px solid var(--primary-color);
+}
+
+.search__icon {
+  bottom: 2rem;
+  left: 1rem;
+  position: relative;
+  color: var(--primary-color);
+}
+
+.cross-icon {
+  color: var(--primary-color);
+  position: relative;
+  bottom: 1.9rem;
+  right: -13rem;
+  background-color: var(--white);
+  cursor: pointer;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+}
+
+.filter-container {
+  position: relative;
+}
+
+.radio-filters {
+  position: absolute;
+  top: 35px;
+  background-color: var(--primary-color);
+  right: 3rem;
+  display: flex;
+  width: max-content;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 2;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.filter-element {
+  display: flex;
+  align-items: center;
+}
+
+.radio-filters div:first-child {
+  gap: 0;
+}
+
+.filter-label {
+  margin: 0 0 0.2rem 0.3rem;
+}
+
+.filter-title {
+  cursor: pointer;
+}
+
+.filter-title:hover {
+  color: var(--hover);
+}
+
+.clear-filter {
+  cursor: pointer;
+}
+.clear-filter:hover {
+  color: var(--hover);
 }

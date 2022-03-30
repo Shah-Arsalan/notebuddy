@@ -9,7 +9,7 @@ import { useAuth, useData } from "../../Contexts";
 
 const Input = ({ inputObject, setEdit }) => {
   const { token } = useAuth();
-  const { dispatch } = useData();
+  const { dispatch, setSearchValue, searchValue } = useData();
   const [expansion, setExpansion] = useState(false);
   const date = new Date();
   const initialState = {
@@ -87,6 +87,8 @@ const Input = ({ inputObject, setEdit }) => {
               tag: "",
             });
             inputObject && setEdit(false);
+            setSearchValue("");
+            dispatch({ type: "SEARCHRESET" });
           }}
         >
           {expansion ? (
