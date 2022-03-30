@@ -1,4 +1,10 @@
-import { useContext, createContext, useEffect, useReducer } from "react";
+import {
+  useContext,
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { DataReducer, initialState } from "../DataReducer/Datareducer";
 import { useAuth } from "./index.js";
 
@@ -6,6 +12,7 @@ const DataContext = createContext();
 const DataProvider = ({ children }) => {
   const { token, user } = useAuth();
   const [state, dispatch] = useReducer(DataReducer, initialState);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -27,7 +34,9 @@ const DataProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <DataContext.Provider value={{ state, dispatch }}>
+    <DataContext.Provider
+      value={{ state, searchValue, setSearchValue, dispatch }}
+    >
       {children}
     </DataContext.Provider>
   );
