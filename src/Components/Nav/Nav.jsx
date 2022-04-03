@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth, useData } from "../../Contexts";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Nav.css";
 const Nav = () => {
   const { dispatch, searchValue, setSearchValue } = useData();
@@ -9,6 +9,10 @@ const Nav = () => {
   const { logoutHandler } = useAuth();
   const [appear, setAppear] = useState(false);
   const [appearFilter, setAppearFilter] = useState(false);
+  const location = useLocation();
+  if (location.pathname === "/404") {
+    return null;
+  }
 
   return (
     <>

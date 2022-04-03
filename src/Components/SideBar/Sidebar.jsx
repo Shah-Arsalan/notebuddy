@@ -3,6 +3,7 @@ import "./Sidebar.css";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <div className="scroller">
@@ -35,12 +36,6 @@ const Sidebar = () => {
             >
               Labels
             </h3>
-          </div>
-
-          <div className="component-child">
-            <i className="fas fa-trash-alt"></i>
-
-            <h3 className="component-content">Bin</h3>
           </div>
         </div>
       </div>

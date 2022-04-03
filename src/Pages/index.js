@@ -4,3 +4,4 @@ export { Login } from "./Login/Login";
 export { Signup } from "./signup/Signup";
 export { Archive } from "./Archive/Archive";
 export { Labels } from "./Labels/Labels";
+export { Error } from "./Error/Error";
