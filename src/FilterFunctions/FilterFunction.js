@@ -8,10 +8,10 @@ const sortByTag = (state, data) => {
 };
 
 const sortByDate = (state, data) => {
-  if (state.data === "oldestFirst") {
-    return data.sort((a, b) => b.timeCreated - a.timeCreated);
+  if (state.date === "oldestFirst") {
+    return data.sort((a, b) => b.time - a.time);
   } else {
-    return data.sort((a, b) => a.timeCreated - b.timeCreated);
+    return data.sort((a, b) => a.time - b.time);
   }
 };
 

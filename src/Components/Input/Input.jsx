@@ -15,9 +15,8 @@ const Input = ({ inputObject, setEdit }) => {
   const initialState = {
     title: "",
     content: "",
-    timeCreated: `${date.getDate()} - 
-  ${date.getMonth() + 1} -
-  ${date.getFullYear()}`,
+    timeCreated: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+    time: date.getTime(),
     backgroundColor: "#FFFFFF",
     tag: "",
   };
@@ -83,7 +82,8 @@ const Input = ({ inputObject, setEdit }) => {
               title: "",
               content: "",
               backgroundColor: note.backgroundColor,
-              timeCreated: note.timeCreated,
+              timeCreated: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+              time: date.getTime(),
               tag: "",
             });
             inputObject && setEdit(false);

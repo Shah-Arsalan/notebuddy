@@ -67,6 +67,7 @@ const Nav = () => {
                 <p
                   className="clear-filter"
                   onClick={() => {
+                    setAppearFilter(false);
                     setSearchValue("");
                     dispatch({ type: "CLEAR" });
                   }}
