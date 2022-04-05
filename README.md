@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Note Buddy - The Note Taking App 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description- 
+Note Buddy is your personal note taking app . From appointments to important meetings , manage everything with this app . Just hop on and start "noting" 
 
-## Available Scripts
+## Technologies Used - 
+- React 
 
-In the project directory, you can run:
+## Pages Included - 
+- Landing Page
+- Home Page
+- Archives Page
+- Labels Page
+- Login Page
+- Sign up page
 
-### `yarn start`
+## More about the app - 
+ The app is fully functional : 
+ 
+ User can add a note , edit it and delete it
+ 
+ The user can click on the archive icon to archive the note 
+ 
+ User has an option to add labels to the note
+ 
+ A separate label page is provided where notes are shown under their specific label 
+ 
+ User can search note by labels 
+ 
+ Sorting based on time is also included 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## ScreenShots - 
 
-### `yarn test`
+![Screenshot (247)](https://user-images.githubusercontent.com/83701141/161818703-0f43fa27-6df0-452c-a725-8d6af834251a.png)
+![Screenshot (248)](https://user-images.githubusercontent.com/83701141/161818712-8abf6e58-b4d0-41bb-a82c-0d33b5ce7b74.png)
+![Screenshot (249)](https://user-images.githubusercontent.com/83701141/161818714-09e44912-425c-46e3-8a8a-7f5a57f4ec17.png)
+![Screenshot (250)](https://user-images.githubusercontent.com/83701141/161818718-3ba5d426-b2ec-4323-9efa-bb001ec48e1c.png)
+![Screenshot (251)](https://user-images.githubusercontent.com/83701141/161818719-0f0ce742-b425-4538-b463-425cc91c0195.png)
+![Screenshot (252)](https://user-images.githubusercontent.com/83701141/161818720-cb2e2257-61b8-42f4-8257-7fac2fbd4c71.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
