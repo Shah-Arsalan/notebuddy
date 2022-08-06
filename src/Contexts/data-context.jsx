@@ -22,6 +22,7 @@ const DataProvider = ({ children }) => {
       });
     }
     if (token) {
+      console.log("user here", user);
       dispatch({
         type: "ENTERNOTE",
         payload: { note: user.notes },

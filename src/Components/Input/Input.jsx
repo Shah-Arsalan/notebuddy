@@ -52,7 +52,7 @@ const Input = ({ inputObject, setEdit }) => {
           }
         );
       }
-
+      console.log(res);
       if (res.status === 200 || res.status === 201) {
         console.log("check", res.data.notes);
         dispatch({

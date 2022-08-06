@@ -8,12 +8,12 @@ const initialState = {
 const DataReducer = (state, action) => {
   const { payload } = action;
   switch (action.type) {
-    case "ENTERNOTE": {
+    case "ENTERNOTE":
+      console.log(payload);
       return {
         ...state,
         notes: [...payload.note],
       };
-    }
 
     case "ARCHIVE": {
       return {
