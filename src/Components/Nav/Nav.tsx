@@ -22,7 +22,7 @@ const Nav = () => {
             <h1 className="logo">Note Buddy</h1>
           </div>
 
-          <div class="navbarsearch">
+          <div className="navbarsearch">
             <input
               value={searchValue}
               onChange={(e) => {
@@ -38,12 +38,12 @@ const Nav = () => {
                   });
                 }
               }}
-              class="search__box"
+              className="search__box"
               type="search"
               placeholder="Search by label ..."
             />
             <span className="search__icon">
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search"></i>
             </span>
             {searchValue !== "" && (
               <span
@@ -62,7 +62,7 @@ const Nav = () => {
                   className="filter-title"
                   onClick={() => setAppearFilter((prev) => !prev)}
                 >
-                  Sort by date <i class="fas fa-calendar-alt"></i>
+                  Sort by date <i className="fas fa-calendar-alt"></i>
                 </p>
                 <p
                   className="clear-filter"
@@ -82,10 +82,10 @@ const Nav = () => {
                         type="radio"
                         id="new"
                         name="radio-filter"
-                        onClick={(e) =>
+                        onClick={() =>
                           dispatch({
                             type: "DATEFILTER",
-                            payload: e.target.value,
+                            payload:"newestFirst",
                           })
                         }
                       />
@@ -99,10 +99,10 @@ const Nav = () => {
                         type="radio"
                         id="old"
                         name="radio-filter"
-                        onClick={(e) =>
+                        onClick={() =>
                           dispatch({
                             type: "DATEFILTER",
-                            payload: e.target.value,
+                            payload: "oldestFirst",
                           })
                         }
                       />
@@ -123,6 +123,14 @@ const Nav = () => {
                 style={{ display: appear ? "block" : "none" }}
                 onClick={() => {
                   logoutHandler();
+                  dispatch({
+                    type: "ENTERNOTE",
+                    payload: { note: [] },
+                  });
+                  dispatch({
+                    type: "ARCHIVE",
+                    payload: { archives: [] },
+                  });
                   setAppear((prev) => !prev);
                   navigate("/");
                 }}

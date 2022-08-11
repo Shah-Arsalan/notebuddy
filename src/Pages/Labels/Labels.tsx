@@ -1,6 +1,7 @@
 import "./Labels.css";
 import { Note, Sidebar } from "../../Components";
 import { useData } from "../../Contexts";
+import { NoteType } from "Types/NoteType";
 
 const Labels = () => {
   const { state } = useData();
@@ -8,7 +9,7 @@ const Labels = () => {
   console.log("length", notes.length);
   const tags = notes.reduce((acc, curr) => {
     return acc.concat(
-      acc.some((element) => element === curr.tag || curr.tag === "")
+      acc.some((element : NoteType) => element === curr.tag || curr.tag === "")
         ? []
         : [curr.tag]
     );
@@ -19,14 +20,14 @@ const Labels = () => {
       <div className="home-container">
         <Sidebar />
         <div className="tags-container">
-          {tags.map((tag) => {
+          {tags.map((tag : string) => {
             const tagNotes = notes.filter((item) => item.tag === tag);
             return (
               <div key={tag} className="element-container">
                 <h1 className="element-tag">Label : {tag}</h1>
                 <div className="tags-inner-container">
                   {tagNotes.map((note) => (
-                    <Note ele={note} />
+                    <Note ele={note} identifier={undefined}/>
                   ))}
                 </div>
               </div>

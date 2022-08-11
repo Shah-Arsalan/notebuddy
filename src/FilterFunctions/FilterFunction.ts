@@ -1,4 +1,7 @@
-const sortByTag = (state, data) => {
+import { NoteType } from "Types/NoteType";
+import { StateType } from "Types/StateType";
+
+const sortByTag = (state : StateType, data : Array<any>) => {
   if (state.searched === "") {
     return data;
   }
@@ -7,7 +10,7 @@ const sortByTag = (state, data) => {
   );
 };
 
-const sortByDate = (state, data) => {
+const sortByDate = (state : StateType, data : Array<any>) => {
   if (state.date === "oldestFirst") {
     return data.sort((a, b) => b.time - a.time);
   } else {

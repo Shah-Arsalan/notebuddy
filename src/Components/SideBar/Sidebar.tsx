@@ -28,7 +28,7 @@ const Sidebar = () => {
           </div>
 
           <div className="component-child">
-            <i class="fas fa-tag"></i>
+            <i className="fas fa-tag"></i>
 
             <h3
               className="component-content"

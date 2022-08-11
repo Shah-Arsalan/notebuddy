@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Response } from "miragejs";
 import { requiresAuth } from "../utils/authUtils";
 import { v4 as uuid } from "uuid";

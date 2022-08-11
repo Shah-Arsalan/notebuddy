@@ -21,3 +21,19 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <BrowserRouter>
+//       <AuthProvider>
+//         <QuizProvider>
+//           <App />
+//         </QuizProvider>
+//       </AuthProvider>
+//     </BrowserRouter>
+//   </React.StrictMode>
+// );

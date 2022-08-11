@@ -6,19 +6,25 @@ import Zoom from "@material-ui/core/Zoom";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth, useData } from "../../Contexts";
+import { NoteType } from "Types/NoteType";
 
-const Input = ({ inputObject, setEdit }) => {
+// type InputType = {
+//   inputObject? : NoteType , 
+// }
+
+const Input = ({ inputObject } : {inputObject : NoteType | undefined}) => {
   const { token } = useAuth();
-  const { dispatch, setSearchValue, searchValue } = useData();
+  const { dispatch, setSearchValue, searchValue , setEdit } = useData();
   const [expansion, setExpansion] = useState(false);
   const date = new Date();
-  const initialState = {
+  const initialState  : NoteType = {
     title: "",
     content: "",
     timeCreated: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
     time: date.getTime(),
     backgroundColor: "#FFFFFF",
     tag: "",
+    _id:""
   };
   const [note, setNote] = useState(inputObject ? inputObject : initialState);
 
