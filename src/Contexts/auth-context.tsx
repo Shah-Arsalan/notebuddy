@@ -1,20 +1,42 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { createContext } from "react";
 import axios from "axios";
+import { AuthType } from "../Types/AuthType";
+import { useNavigate } from "react-router-dom";
 
-const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+// const AuthContext = createContext<AuthType>({} as AuthType);
+
+const AuthContext = createContext<AuthType>({ loginCall : () => {}, signupHandler: () => {} , logoutHandler : () => {} , token : "" , user : {
+  _id : "",
+  archives : [],
+  createdAt : "",
+  email : "",
+  firstName : "",
+  id : "",
+  lastName : "" ,
+  notes : [],
+  updatedAt : "",
+  }});
+
+
+
+
+const AuthProvider = ({ children } : {children : React.ReactChild} ) => {
+  const navigate = useNavigate();
+
   const localStorageItems = JSON.parse(
-    localStorage.getItem("LoginCredentials")
-  );
+    localStorage.getItem("LoginCredentials")  || '{"dummy1":"dummy1value", "dummy2":"dummy2value"}'
+  )  
   const [token, setToken] = useState(localStorageItems?.userToken);
   const [user, setUser] = useState(localStorageItems?.activeUser);
-  const loginCall = async (email, password) => {
+  console.log("ts1",token)
+  console.log("ts2",user)
+  const loginCall = async (email : string, password : string ) => {
     try {
       const response = await axios.post("/api/auth/login", {
         email,
-        password,
+        password, 
       });
 
       if (response.status === 200 || response.status === 201) {
@@ -30,12 +52,13 @@ const AuthProvider = ({ children }) => {
         setUser(response.data.foundUser);
         setToken(response.data.encodedToken);
       }
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const signupHandler = async (email, password, firstname, lastname) => {
+  const signupHandler = async (email  : string , password : string , firstname  : string, lastname : string) => {
     try {
       const response = await axios.post("/api/auth/signup", {
         email,
@@ -48,7 +71,7 @@ const AuthProvider = ({ children }) => {
           "LoginCredentials",
           JSON.stringify({
             userToken: response.data.encodedToken,
-            activeUser: response.data.foundUser,
+            activeUser: response.data.createdUser,
           })
         );
         console.log("checking 2 : ", response);
@@ -56,6 +79,7 @@ const AuthProvider = ({ children }) => {
         setUser(response.data.createdUser);
         setToken(response.data.encodedToken);
       }
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -70,6 +94,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{ loginCall, signupHandler, logoutHandler, token, user }}
+      // value={{ loginCall }}
     >
       {children}
     </AuthContext.Provider>
@@ -79,3 +104,21 @@ const AuthProvider = ({ children }) => {
 const useAuth = () => useContext(AuthContext);
 
 export { AuthProvider, useAuth };
+
+
+// const AuthContext = createContext<AuthType>({ loginCall : () => {} , signupHandler: () => {} , logoutHandler : () => {} , token : "" , user : {
+//   _id : "",
+//   archives : [],
+//   createdAt : "",
+//   email : "",
+//   firstName : "",
+//   id : "",
+//   lastName : "" ,
+//   notes : [],
+//   updatedAt : "",
+//   }});
+
+// if(typeof logincredentials === string) {
+//   localstorageitem = json.parse(localstorage.getItem(login credentials))
+//   } 
+// typescript se bachao 

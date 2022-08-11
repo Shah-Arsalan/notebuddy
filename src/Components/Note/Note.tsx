@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
-import { Input } from "../../Components";
+import { NoteType } from "Types/NoteType";
+import { Input } from "..";
 import { useAuth, useData } from "../../Contexts";
 import "./Note.css";
 
-const Note = ({ ele, identifier }) => {
+const Note = ({ ele, identifier } : {ele : NoteType, identifier : string | undefined }) => {
   const { token } = useAuth();
-  const { dispatch } = useData();
-  const [edit, setEdit] = useState(false);
+  const { dispatch , edit , setEdit } = useData();
   const { title, content, timeCreated, backgroundColor, _id, tag } = ele;
 
   const editHandler = () => {
@@ -107,7 +107,7 @@ const Note = ({ ele, identifier }) => {
   return (
     <>
       {edit ? (
-        <Input inputObject={ele} setEdit={setEdit} />
+        <Input inputObject={ele} />
       ) : (
         <div className="note" style={{ backgroundColor }}>
           <h1>{title}</h1>
@@ -116,12 +116,12 @@ const Note = ({ ele, identifier }) => {
 
           <div className="note-features">
             <p className="time">{timeCreated}</p>
-            <i onClick={() => editHandler()} class="fas fa-edit"></i>
+            <i onClick={() => editHandler()} className="fas fa-edit"></i>
             {!identifier ? (
-              <i class="fas fa-archive" onClick={() => archiveHandler()}></i>
+              <i className="fas fa-archive" onClick={() => archiveHandler()}></i>
             ) : (
               <i
-                class="fas fa-arrow-up"
+                className="fas fa-arrow-up"
                 onClick={() => archiveRestoreHandler()}
               ></i>
             )}

@@ -1,5 +1,7 @@
+// @ts-nocheck
 import { Response } from "miragejs";
-import { requiresAuth } from "../utils/authUtils";
+// import { requiresAuth } from "../utils/authUtils";
+import { requiresAuth } from "backend/utils/authUtils";
 
 /**
  * All the routes related to Archives are present here.

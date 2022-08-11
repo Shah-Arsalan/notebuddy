@@ -1,4 +1,5 @@
 import "./App.css";
+// @ts-ignore
 import Mockman from "mockman-js";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Nav } from "./Components";

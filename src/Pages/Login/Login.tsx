@@ -16,13 +16,13 @@ const Login = () => {
     loginCall("adarshbalika@gmail.com", "adarshBalika123");
   };
 
-  useEffect(() => {
-    if (token) {
-      setTimeout(() => {
-        navigate("/home");
-      }, 1000);
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     setTimeout(() => {
+  //       navigate("/home");
+  //     }, 1000);
+  //   }
+  // }, [token]);
   return (
     <>
       <div className="login-page">

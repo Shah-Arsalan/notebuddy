@@ -14,13 +14,13 @@ const Signup = () => {
     confirmpassword: "",
   });
 
-  useEffect(() => {
-    if (token) {
-      setTimeout(() => {
-        navigate("/home");
-      }, 1000);
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     setTimeout(() => {
+  //       navigate("/home");
+  //     }, 1000);
+  //   }
+  // }, [token]);
   return (
     <>
       {" "}
@@ -127,7 +127,7 @@ const Signup = () => {
               <div className="input forgot-password">
                 <div className="list-item">
                   <input id="item-1" type="checkbox" name="checkbox-input" />
-                  <label for="item-1">I accept all terms and conditions</label>
+                  <label htmlFor="item-1">I accept all terms and conditions</label>
                 </div>
               </div>
 
