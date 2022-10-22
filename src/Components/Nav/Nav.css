@@ -118,3 +118,7 @@
 .clear-filter:hover {
   color: var(--hover);
 }
+
+a{
+  color: var(--white);
+}

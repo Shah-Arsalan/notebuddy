@@ -48,3 +48,40 @@ input[type="email"] {
   cursor: pointer;
   color: var(--hover);
 }
+
+
+.error-msg{
+  background-color: var(--white);
+  width: max-content;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  position: absolute;
+  top: 37rem;
+  left: 33rem;
+  border: 1px solid var(--red);
+}
+
+.cross{
+  cursor: pointer;
+}
+
+.input-icon{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fa-eye{
+  border: 1px solid var(--black);
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.loginLink:hover{
+cursor: pointer;
+color: var(--primary-color);
+}

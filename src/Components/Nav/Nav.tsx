@@ -143,8 +143,8 @@ const Nav = () => {
               ></i>
             </div>
 
-            <i className="fab fa-github icon"></i>
-            <i className="fab fa-twitter icon"></i>
+           <a target="_blank" href="https://github.com/Shah-Arsalan"><i  className="fab fa-github icon"></i></a>
+           <a target="_blank" href="https://twitter.com/Shah_Arsalan2"><i className="fab fa-twitter icon"></i></a>
           </div>
         </div>
       )}
