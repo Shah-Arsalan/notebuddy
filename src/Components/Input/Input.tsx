@@ -8,13 +8,10 @@ import axios from "axios";
 import { useAuth, useData } from "../../Contexts";
 import { NoteType } from "Types/NoteType";
 
-// type InputType = {
-//   inputObject? : NoteType , 
-// }
 
 const Input = ({ inputObject } : {inputObject : NoteType | undefined}) => {
   const { token } = useAuth();
-  const { dispatch, setSearchValue, searchValue , setEdit } = useData();
+  const { dispatch, setSearchValue, setEdit } = useData();
   const [expansion, setExpansion] = useState(false);
   const date = new Date();
   const initialState  : NoteType = {
@@ -156,10 +153,11 @@ const Input = ({ inputObject } : {inputObject : NoteType | undefined}) => {
               <AddIcon />
             </Fab>
           </Zoom>
+        
         </form>
       </div>
     </>
   );
 };
 
-export { Input };
+export { Input }

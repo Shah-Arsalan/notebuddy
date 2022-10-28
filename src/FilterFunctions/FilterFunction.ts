@@ -11,6 +11,7 @@ const sortByTag = (state : StateType, data : Array<any>) => {
 };
 
 const sortByDate = (state : StateType, data : Array<any>) => {
+  console.log("date filter here" , data.sort((a, b) => b.time - a.time) )
   if (state.date === "oldestFirst") {
     return data.sort((a, b) => b.time - a.time);
   } else {
