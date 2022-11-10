@@ -8,10 +8,11 @@ import React, {
 import { DataReducer, initialState } from "../DataReducer/Datareducer";
 import { useAuth } from "./index.js";
 import {ActionType} from "../DataReducer/Datareducer";
-import { NoteType } from "Types/NoteType";
-import { StateType } from "Types/StateType";
+// import { NoteType } from "Types/NoteType";
+// import { StateType } from "Types/StateType";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { StateType } from "../Types/StateType";
 
 
 

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-import { NoteType } from "Types/NoteType";
+// import { NoteType } from "Types/NoteType";
 import { Input } from "..";
 import { useAuth, useData } from "../../Contexts";
+import { NoteType } from "../../Types/NoteType";
 import "./Note.css";
 
 const Note = ({ ele, identifier } : {ele : NoteType, identifier : string | undefined }) => {

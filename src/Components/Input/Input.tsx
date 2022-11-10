@@ -6,7 +6,8 @@ import Zoom from "@material-ui/core/Zoom";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth, useData } from "../../Contexts";
-import { NoteType } from "Types/NoteType";
+import { NoteType } from "../../Types/NoteType";
+
 
 
 const Input = ({ inputObject } : {inputObject : NoteType | undefined}) => {

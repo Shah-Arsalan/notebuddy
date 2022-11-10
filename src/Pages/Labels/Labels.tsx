@@ -1,7 +1,8 @@
 import "./Labels.css";
 import { Note, Sidebar } from "../../Components";
 import { useData } from "../../Contexts";
-import { NoteType } from "Types/NoteType";
+import { NoteType } from "../../Types/NoteType";
+// import { NoteType } from "Types/NoteType";
 
 const Labels = () => {
   const { state } = useData();

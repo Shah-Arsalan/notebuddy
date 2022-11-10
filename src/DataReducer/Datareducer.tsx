@@ -1,4 +1,6 @@
-import { StateType } from "Types/StateType";
+import { StateType } from "../Types/StateType";
+
+// import { StateType } from "Types/StateType";
 const initialState : StateType = {
   notes: [],
   archives: [],

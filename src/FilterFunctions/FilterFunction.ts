@@ -1,5 +1,6 @@
-import { NoteType } from "Types/NoteType";
-import { StateType } from "Types/StateType";
+// import { NoteType } from "Types/NoteType";
+import { StateType } from "../Types/StateType";
+// import { StateType } from "Types/StateType";
 
 const sortByTag = (state : StateType, data : Array<any>) => {
   if (state.searched === "") {
