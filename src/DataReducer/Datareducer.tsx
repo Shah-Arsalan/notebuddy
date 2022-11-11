@@ -1,3 +1,5 @@
+import { NotEmittedStatement } from "typescript";
+import { NoteType } from "../Types/NoteType";
 import { StateType } from "../Types/StateType";
 
 // import { StateType } from "Types/StateType";
@@ -12,11 +14,11 @@ const initialState : StateType = {
 
 export type ActionType =  {
   type : "ENTERNOTE", 
-  payload : {note : Array<any>}
+  payload : {note : Array<NoteType>}
 } |
 {
   type : "ARCHIVE", 
-  payload : {archives : Array<any>}
+  payload : {archives : Array<NoteType>}
 }  |
 {
   type : "SEARCHFILTER", 
@@ -27,7 +29,7 @@ export type ActionType =  {
 } |
 {
   type : "DATEFILTER", 
-  payload : any
+  payload : string
 }|
 {
   type : "CLEAR", 

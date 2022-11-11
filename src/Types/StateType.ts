@@ -1,6 +1,8 @@
+import { NoteType } from "./NoteType";
+
 export type StateType = {
-    notes: Array<any>,
-    archives: Array<any>,
+    notes: Array<NoteType>,
+    archives: Array<NoteType>,
     searched: string,
     date: string,
   };
