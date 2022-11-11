@@ -1,12 +1,13 @@
+import { NoteType } from "./NoteType";
 
 export type userType = {
   _id: string;
-  archives: Array<any>;
+  archives: Array<NoteType>;
   createdAt: string;
   email: string;
   firstName: string;
   id: string;
   lastName: string;
-  notes: Array<any>;
+  notes: Array<NoteType>;
   updatedAt: string;
 };
