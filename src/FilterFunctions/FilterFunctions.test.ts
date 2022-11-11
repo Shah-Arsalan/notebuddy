@@ -3,6 +3,16 @@ import { StateType } from "../Types/StateType";
 import { sortByTag, sortByDate } from "./FilterFunction";
 
 describe("should test filter functions", () => {
+  let count = 1;
+  beforeEach(() => {
+    console.log("Running test" , count , "/4 in FilterFunctions Suite")
+  });
+  
+  afterEach(() => {
+    console.log("Test" , count , "/4 successful in FilterFunctions Suite")
+    count += 1;
+  });
+
   test("should test tag filter when serched field is empty string", () => {
     const initialState: StateType = {
       notes: [

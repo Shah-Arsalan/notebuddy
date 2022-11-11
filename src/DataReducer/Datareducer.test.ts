@@ -2,6 +2,17 @@ import { StateType } from "../Types/StateType";
 import { ActionType, DataReducer } from "./Datareducer";
 
 describe("test data reducer", () => {
+  let count = 1;
+  beforeEach(() => {
+    console.log("Running test" , count , "/6 in DataRudecer Suite")
+  });
+  
+  afterEach(() => {
+    console.log("Test" , count , "/6 successful in DataRudecer Suite")
+    count += 1;
+  });
+
+  
   test("Should add new note to notes array", () => {
     // Arrange
     const initialTestState: StateType = {
