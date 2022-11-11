@@ -1,10 +1,10 @@
 export type NoteType = {
-  title: string;
-  content: string;
-  timeCreated: string;
   backgroundColor: string;
+  content: string;
   tag: string;
-  tags : [],
+  tags : Array<any>,
   time: number;
+  timeCreated: string;
+  title: string;
   _id ?: string;
 };
