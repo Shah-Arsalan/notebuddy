@@ -22,6 +22,7 @@ const Input = ({ inputObject } : {inputObject : NoteType | undefined}) => {
     time: date.getTime(),
     backgroundColor: "#FFFFFF",
     tag: "",
+    tags:[],
     _id:""
   };
   const [note, setNote] = useState(inputObject ? inputObject : initialState);
@@ -89,6 +90,7 @@ const Input = ({ inputObject } : {inputObject : NoteType | undefined}) => {
               timeCreated: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
               time: date.getTime(),
               tag: "",
+              tags:[],
             });
             inputObject && setEdit(false);
             setSearchValue("");

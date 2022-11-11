@@ -1,3 +1,5 @@
+// import { NoteType } from "./NoteType";
+
 import { NoteType } from "./NoteType";
 
 export type userType = {

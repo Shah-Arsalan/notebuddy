@@ -4,6 +4,7 @@ export type NoteType = {
   timeCreated: string;
   backgroundColor: string;
   tag: string;
+  tags : [],
   time: number;
   _id ?: string;
 };
