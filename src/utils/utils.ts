@@ -5,7 +5,7 @@ import { NoteType } from "../Types/NoteType";
 
 
 
-export const noteHandler = async ({identifier , note,token,dispatch} : {identifier : NoteType | undefined , note : NoteType , token : string , dispatch : React.Dispatch<ActionType>}) => {
+export const noteHandler = async (identifier : NoteType | undefined , note : NoteType , token : string ) => {
     try {
       let res = null;
       if (identifier) {
@@ -20,6 +20,8 @@ export const noteHandler = async ({identifier , note,token,dispatch} : {identifi
             },
           }
         );
+        
+        
       } else {
         res = await axios.post(
           "/api/notes",
@@ -30,16 +32,18 @@ export const noteHandler = async ({identifier , note,token,dispatch} : {identifi
             },
           }
         );
-      }
-      console.log(res);
-      if (res.status === 200 || res.status === 201) {
-        console.log("check", res.data.notes);
-        dispatch({
-          type: "ENTERNOTE",
-          payload: { note: res.data.notes },
-        });
-      }
-    } catch (error) {
+       return res.data;
+      // console.log(res);
+      // if (res.status === 200 || res.status === 201) {
+      //   console.log("check", res.data.notes);
+      //   dispatch({
+      //     type: "ENTERNOTE",
+      //     payload: { note: res.data.notes },
+      //   });
+      // }
+      
+    } }
+    catch (error) {
       console.error(error);
     }
   };
