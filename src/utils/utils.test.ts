@@ -1,8 +1,5 @@
 import axios from "axios";
-import { useData } from "../Contexts";
-import { ActionType } from "../DataReducer/Datareducer";
-import { NoteType } from "../Types/NoteType";
-import { noteHandler } from "./utils";
+import { archiveHandler, archiveRestoreHandler, deleteHandler, getInitialArchivesData, getInitialNoteData, loginCall, logoutHandler, noteHandler, signupHandler } from "./utils";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -12,9 +9,9 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 describe("get user service", () => {
   
     
-	test("should return user when API call is successful", async () => {
-		mockedAxios.post.mockResolvedValue( {data: { name: "Tanay", age: 30 }} );
-		const user = await noteHandler(undefined,{
+	test("should post a note", async () => {
+		mockedAxios.post.mockResolvedValue( {data: { note: "HI"}} );
+		const mockvalue = await noteHandler(undefined,{
             backgroundColor: "white",
             content: "abcd",
             tag: "abc",
@@ -25,19 +22,18 @@ describe("get user service", () => {
             _id:undefined
         },"aasd", () => {});
 
-        console.log(user)
-        console.log("phewwww",user.data)
+  
 
-        expect(user).toEqual({ name: "Tanay", age: 30 } );
+        expect(mockvalue).toEqual( { note: "HI"} );
 
 	});
 
-    test("should return errorMessage when API is call fails", async () => {
-        mockedAxios.post.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "user not found"}}});
+    test("should return errorMessage when API is call fails for post note", async () => {
+        mockedAxios.post.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "call unsecessful"}}});
 
         mockedAxios.isAxiosError.mockImplementation((payload) => true)
         
-            const user = await noteHandler(undefined,{
+            const mockvalue = await noteHandler(undefined,{
                 backgroundColor: "white",
                 content: "abcd",
                 tag: "abc",
@@ -47,78 +43,212 @@ describe("get user service", () => {
                 title: "title",
                 _id:undefined
             },"aasd", () => {});
-            console.log(user)
-            console.log(user.data)
-            console.log(user.response.data)
-            expect(user.response.data).toEqual({ errorMessage: "user not found" });
+           
+            expect(mockvalue.response.data).toEqual({ errorMessage: "call unsecessful" });
 
             expect(axios.isAxiosError).toBeCalledTimes(1)
         
     })
+
+
+    test("should delete a note", async () => {
+		mockedAxios.delete.mockResolvedValue( {data: { note: "HI"}} );
+		const mockvalue = await deleteHandler("aaa","aasd","aaa", () => {});
+
+        
+
+        expect(mockvalue).toEqual( { note: "HI"});
+
+	});
+
+    test("should return errorMessage when API is call fails for delete note", async () => {
+        mockedAxios.delete.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "call unsecessful"}}});
+
+        mockedAxios.isAxiosError.mockImplementation((payload) => true)
+        
+            const mockvalue = await deleteHandler("aaa","aasd","aaa", () => {});
+           
+            expect(mockvalue.response.data).toEqual({ errorMessage: "call unsecessful" });
+
+            expect(axios.isAxiosError).toBeCalledTimes(1)
+        
+    })
+
+
+    test("should archive a note", async () => {
+		mockedAxios.post.mockResolvedValue( {data: { note: "HI"}} );
+		const mockvalue = await archiveHandler("aaa",{
+            backgroundColor: "white",
+            content: "abcd",
+            tag: "abc",
+            tags: ["abc"],
+            time: 2,
+            timeCreated: "20-2-5",
+            title: "title",
+            _id:undefined
+        },"aaa", () => {});
+
+        
+
+        expect(mockvalue).toEqual( { note: "HI"});
+
+	});
+
+    test("should return errorMessage when API call fails for archive note request", async () => {
+        mockedAxios.post.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "call unsecessful"}}});
+
+        mockedAxios.isAxiosError.mockImplementation((payload) => true)
+        
+            const mockvalue = await archiveHandler("aaa",{
+                backgroundColor: "white",
+                content: "abcd",
+                tag: "abc",
+                tags: ["abc"],
+                time: 2,
+                timeCreated: "20-2-5",
+                title: "title",
+                _id:undefined
+            },"aaa", () => {});
+            
+            expect(mockvalue.response.data).toEqual({ errorMessage: "call unsecessful" });
+
+            expect(axios.isAxiosError).toBeCalledTimes(1)
+        
+    })
+
+
+
+    test("should unarchive a note", async () => {
+		mockedAxios.post.mockResolvedValue( {data: { note: "HI"}} );
+		const mockvalue = await archiveRestoreHandler("aaa","aasd", () => {});
+
+      
+
+        expect(mockvalue).toEqual( { note: "HI"});
+
+	});
+
+    test("should return errorMessage when API call fails for unarchive note request", async () => {
+        mockedAxios.post.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "call unsecessful"}}});
+
+        mockedAxios.isAxiosError.mockImplementation((payload) => true)
+        
+            const mockvalue = await archiveRestoreHandler("aaa","aasd", () => {});
+         
+            expect(mockvalue.response.data).toEqual({ errorMessage: "call unsecessful" });
+
+            expect(axios.isAxiosError).toBeCalledTimes(1)
+        
+    })
+
+
+
+    test("should login a user", async () => {
+		mockedAxios.post.mockResolvedValue( {data: { username: "mockname"}} );
+		const user = await loginCall("aaa","aasd", () => {} ,()=>{} , ()=>{});
+
+
+        expect(user).toEqual( { username: "mockname"});
+
+	});
+
+    test("should return errorMessage when API call fails for login request", async () => {
+        mockedAxios.post.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "call unsecessful"}}});
+
+        mockedAxios.isAxiosError.mockImplementation((payload) => true)
+        
+            const user = await loginCall("aaa","aasd", () => {} ,()=>{} , ()=>{});
+           
+            expect(user.response.data).toEqual({ errorMessage: "call unsecessful" });
+
+            expect(axios.isAxiosError).toBeCalledTimes(1)
+        
+    })
+
+
+    test("should signup a user", async () => {
+		mockedAxios.post.mockResolvedValue( {data: { username: "mockname"}} );
+		const user = await signupHandler("aaa","aasd","aaa","aasd", () => {} ,()=>{} , ()=>{});
+
+
+        expect(user).toEqual( { username: "mockname"});
+
+	});
+
+    test("should return errorMessage when API call fails for signup request", async () => {
+        mockedAxios.post.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "call unsecessful"}}});
+
+        mockedAxios.isAxiosError.mockImplementation((payload) => true)
+        
+            const user = await signupHandler("aaa","aasd","aaa","aasd", () => {} ,()=>{} , ()=>{});
+           
+            expect(user.response.data).toEqual({ errorMessage: "call unsecessful" });
+
+            expect(axios.isAxiosError).toBeCalledTimes(1)
+        
+    })
+
+
+    test("logs out a user", async () => {
+		const mockedvalue = logoutHandler(()=>{},()=>{});
+        expect(mockedvalue).toBe(2)
+
+	});
+
+
+
+    test("should get initial note daTA", async () => {
+		mockedAxios.get.mockResolvedValue( {data: { note: "HI"}} );
+		const mockvalue = await getInitialNoteData("aaa", () => {});
+
+
+        expect(mockvalue).toEqual( { note: "HI"});
+
+	});
+
+    test("should return errorMessage when API call fails for initial note request", async () => {
+        mockedAxios.get.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "call unsecessful"}}});
+
+        mockedAxios.isAxiosError.mockImplementation((payload) => true)
+        
+            const mockvalue = await getInitialNoteData("aaa", () => {});
+           
+            expect(mockvalue.response.data).toEqual({ errorMessage: "call unsecessful" });
+
+            expect(axios.isAxiosError).toBeCalledTimes(1)
+        
+    })
+
+
+    test("should get initial archive daTA", async () => {
+		mockedAxios.get.mockResolvedValue( {data: { note: "HI"}} );
+		const mockvalue = await getInitialArchivesData("aaa", () => {});
+
+        
+
+        expect(mockvalue).toEqual( { note: "HI"});
+
+	});
+
+    test("should return errorMessage when API call fails for initial archive request", async () => {
+        mockedAxios.get.mockRejectedValue({ isAxiosError: true, response: { data: { errorMessage: "call unsecessful"}}});
+
+        mockedAxios.isAxiosError.mockImplementation((payload) => true)
+        
+            const mockvalue = await getInitialArchivesData("aaa", () => {});
+        
+            expect(mockvalue.response.data).toEqual({ errorMessage: "call unsecessful" });
+
+            expect(axios.isAxiosError).toBeCalledTimes(1)
+        
+    })
+
+
+
+
+
+
+
+
 });
 
-
-// import axios from "axios";
-// // import { useData } from "../Contexts";
-// // import { ActionType } from "../DataReducer/Datareducer";
-// // import { NoteType } from "../Types/NoteType";
-// import { noteHandler } from "./utils";
-
-// jest.mock("axios");
-// const mockedAxios = axios as jest.Mocked<typeof axios>;
-
-// describe("get user service", () => {
-//   test("should return user when API call is successful", async () => {
-//     mockedAxios.post.mockResolvedValue({ data: { name: "Tanay", age: 30 } });
-
-//     const user = await noteHandler(
-//       undefined,
-//       {
-//         backgroundColor: "white",
-//         content: "abcd",
-//         tag: "abc",
-//         tags: ["abc"],
-//         time: 2,
-//         timeCreated: "20-2-5",
-//         title: "title",
-//         _id: undefined,
-//       },
-//       "aasd"
-//     );
-
-//     console.log({ user });
-
-//     expect(user).toEqual({ name: "Tanay", age: 30 });
-//   });
-
-//   test("should return errorMessage when API is call fails", async () => {
-//     mockedAxios.post.mockRejectedValue({
-//       isAxiosError: true,
-//       response: { data: { errorMessage: "user not found" } },
-//     });
-
-//     mockedAxios.isAxiosError.mockImplementation((payload) => true);
-
-//     const user = await noteHandler(
-//       undefined,
-//       {
-//         backgroundColor: "white",
-//         content: "abcd",
-//         tag: "abc",
-//         tags: ["abc"],
-//         time: 2,
-//         timeCreated: "20-2-5",
-//         title: "title",
-//         _id: undefined,
-//       },
-//       "aasd"
-//     );
-
-//     console.log({ user });
-
-//     expect(user.response.data).toEqual({ errorMessage: "user not found" });
-
-
-//     // expect(mockedAxios.isAxiosError).toBeCalledTimes(1);
-//   });
-// });

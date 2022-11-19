@@ -2,58 +2,19 @@ import "./HomePage.css";
 import { Sidebar, Input, Note } from "../../Components";
 import { useAuth, useData } from "../../Contexts";
 import { useFilter } from "../../useFilter/useFilter";
-import { useEffect } from "react";
-import axios from "axios";
+import { useEffect , useState } from "react";
+import { getInitialArchivesData, getInitialNoteData } from "../../utils/utils";
 
 const HomePage = () => {
-  const { state , dispatch } = useData();
+  const { dispatch } = useData();
   const {token} = useAuth()
-  const { notes } = state;
   const { filteredData } = useFilter();
   console.log("the data is " , filteredData)
+  const [edit  , setEdit] = useState(false);
 
   useEffect(() => {
-    const getInitialData = async () => {
-      try {
-          const res = await axios.get("/api/notes", {
-            headers: {
-              authorization: token,
-            }
-          });
-  
-          if (res.status === 200 || res.status === 201) {
-            dispatch({
-              type: "ENTERNOTE",
-              payload: { note: res.data.notes },
-            });
-          }
-          
-        } 
-       catch (error) {
-        console.error(error);
-      }
-
-      try {
-        const res = await axios.get("/api/archives", {
-          headers: {
-            authorization: token,
-          }
-        });
-
-        if (res.status === 200 || res.status === 201) {
-          dispatch({
-            type: "ARCHIVE",
-            payload: { archives: res.data.archives },
-          });
-        }
-     
-      } 
-     catch (error) {
-      console.error(error);
-    }
-    };
-  
-    getInitialData(); 
+    getInitialNoteData(token , dispatch); 
+    getInitialArchivesData(token , dispatch);
 
   }, []);
   return (
@@ -61,7 +22,7 @@ const HomePage = () => {
       <div className="home-container">
         <Sidebar />
         <div className="input-note-container">
-          <Input inputObject={undefined} />
+          <Input inputObject={undefined} setEdit={setEdit}/>
           <div className="note-container">
             {filteredData?.map((ele) => {
               return <Note key={ele._id} ele={ele} identifier={undefined} />;

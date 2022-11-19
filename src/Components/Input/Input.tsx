@@ -11,9 +11,10 @@ import { noteHandler } from "../../utils/utils";
 
 
 
-const Input = ({ inputObject } : {inputObject : NoteType | undefined}) => {
+const Input = ({ inputObject , setEdit} : {inputObject : NoteType | undefined , setEdit :  React.Dispatch<React.SetStateAction<boolean>>}) => {
+  console.log("here is the input object",inputObject)
   const { token } = useAuth();
-  const { dispatch, setSearchValue, setEdit } = useData();
+  const { dispatch, setSearchValue} = useData();
   const [expansion, setExpansion] = useState(false);
   const date = new Date();
   const initialState  : NoteType = {
@@ -32,44 +33,6 @@ const Input = ({ inputObject } : {inputObject : NoteType | undefined}) => {
     setExpansion(true);
   }
 
-  // const noteHandler = async () => {
-  //   try {
-  //     let res = null;
-  //     if (inputObject) {
-  //       res = await axios.post(
-  //         `/api/notes/${inputObject._id}`,
-  //         {
-  //           note,
-  //         },
-  //         {
-  //           headers: {
-  //             authorization: token,
-  //           },
-  //         }
-  //       );
-  //     } else {
-  //       res = await axios.post(
-  //         "/api/notes",
-  //         { note },
-  //         {
-  //           headers: {
-  //             authorization: token,
-  //           },
-  //         }
-  //       );
-  //     }
-  //     console.log(res);
-  //     if (res.status === 200 || res.status === 201) {
-  //       console.log("check", res.data.notes);
-  //       dispatch({
-  //         type: "ENTERNOTE",
-  //         payload: { note: res.data.notes },
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   return (
     <>

@@ -1,4 +1,3 @@
-// import { StateType } from "Types/StateType";
 import { StateType } from "../Types/StateType";
 import { sortByTag, sortByDate } from "./FilterFunction";
 

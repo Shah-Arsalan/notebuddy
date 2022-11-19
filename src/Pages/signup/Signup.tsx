@@ -2,10 +2,11 @@ import "./Signup.css";
 import { useAuth } from "../../Contexts";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { signupHandler } from "../../utils/utils";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { signupHandler, token } = useAuth();
+  const { setUser , setToken  } = useAuth();
   const [signUpDetails, setSignUpDetails] = useState({
     email: "",
     password: "",
@@ -51,7 +52,10 @@ const Signup = () => {
                   signUpDetails.email,
                   signUpDetails.password,
                   signUpDetails.firstname,
-                  signUpDetails.lastname
+                  signUpDetails.lastname,
+                  setUser,
+                  setToken,
+                  navigate
                 );
               }}}
             >
