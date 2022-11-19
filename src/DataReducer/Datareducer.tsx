@@ -1,8 +1,7 @@
-import { NotEmittedStatement } from "typescript";
 import { NoteType } from "../Types/NoteType";
 import { StateType } from "../Types/StateType";
 
-// import { StateType } from "Types/StateType";
+
 const initialState : StateType = {
   notes: [],
   archives: [],
@@ -36,7 +35,7 @@ export type ActionType =  {
   
 }
 const DataReducer = (state : StateType, action : ActionType) : StateType => {
-  // const { payload } = action;
+ 
   switch (action.type) {
     case "ENTERNOTE":
       console.log(action.payload);

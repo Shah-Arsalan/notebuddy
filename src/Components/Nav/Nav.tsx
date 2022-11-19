@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useAuth, useData } from "../../Contexts";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Nav.css";
+import { logoutHandler } from "../../utils/utils";
 const Nav = () => {
   const { dispatch, searchValue, setSearchValue } = useData();
-  const { token } = useAuth();
+  const { token , setUser , setToken} = useAuth();
   const navigate = useNavigate();
-  const { logoutHandler } = useAuth();
   const [appear, setAppear] = useState(false);
   const [appearFilter, setAppearFilter] = useState(false);
   const location = useLocation();
@@ -122,7 +122,7 @@ const Nav = () => {
                 className="logout-text"
                 style={{ display: appear ? "block" : "none" }}
                 onClick={() => {
-                  logoutHandler();
+                  logoutHandler(setUser,setToken);
                   dispatch({
                     type: "ENTERNOTE",
                     payload: { note: [] },

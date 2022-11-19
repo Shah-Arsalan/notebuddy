@@ -1,28 +1,23 @@
 import "./Login.css";
-import { useAuth } from "../../Contexts";
+import { useAuth, useData } from "../../Contexts";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginCall } from "../../utils/utils";
 const Login = () => {
   const navigate = useNavigate();
-  const { loginCall, token, user } = useAuth();
-
   const [loginDetails, setLoginDetails] = useState({ email: "", password: "" });
+  const { setToken} = useAuth();
+  const {setUser }= useAuth();
 
   const guestLoginHandler = () => {
     setLoginDetails({
       email: "adarshbalika@gmail.com",
       password: "adarshBalika",
     });
-    loginCall("adarshbalika@gmail.com", "adarshBalika123");
+    loginCall("adarshbalika@gmail.com", "adarshBalika123" ,setUser , setToken ,navigate );
   };
 
-  // useEffect(() => {
-  //   if (token) {
-  //     setTimeout(() => {
-  //       navigate("/home");
-  //     }, 1000);
-  //   }
-  // }, [token]);
+
   return (
     <>
       <div className="login-page">
@@ -66,7 +61,7 @@ const Login = () => {
               <button
                 className="primary-button primary-button-login"
                 onClick={() =>
-                  loginCall(loginDetails.email, loginDetails.password)
+                  loginCall(loginDetails.email, loginDetails.password, setUser , setToken , navigate)
                 }
               >
                 Log In
