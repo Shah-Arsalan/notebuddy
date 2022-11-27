@@ -2,7 +2,7 @@ export type NoteType = {
   backgroundColor: string;
   content: string;
   tag: string;
-  tags : Array<any>,
+  tags : Array<string>,
   time: number;
   timeCreated: string;
   title: string;
