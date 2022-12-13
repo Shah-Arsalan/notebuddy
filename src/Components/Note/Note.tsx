@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-// import { NoteType } from "Types/NoteType";
+// import { NoteType } from "Types/NoteT";
 import { Input } from "..";
 import { useAuth, useData } from "../../Contexts";
 import { NoteType } from "../../Types/NoteType";
