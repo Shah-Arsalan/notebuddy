@@ -195,26 +195,28 @@ export const loginCall = async (email : string, password : string  , setUser  : 
 
 export const signupHandler = async (email  : string , password : string , firstname  : string, lastname : string ,  setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any) => {
   try {
-    const response = await axios.post("/api/auth/signup", {
+    const response = await axios.post("https://notebuddy-backend.shaharsalan.repl.co/users/signup", {
       email,
       password,
       firstname,
       lastname,
     });
-    if (response.status === 200 || response.status === 201) {
-      localStorage.setItem(
-        "LoginCredentials",
-        JSON.stringify({
-          userToken: response.data.encodedToken,
-          activeUser: response.data.createdUser,
-        })
-      );
+    // if (response.status === 200 || response.status === 201) {
+    //   localStorage.setItem(
+      
+    //     "LoginCredentials",
+    //     JSON.stringify({
+    //       userToken: response.data.encodedToken,
+    //       activeUser: response.data.createdUser,
+    //     })
+    //   );
    
-      setUser(response.data.createdUser);
-      setToken(response.data.encodedToken);
-    }
-    navigate("/home");
-    return response.data;
+    //   setUser(response.data.createdUser);
+    //   setToken(response.data.encodedToken);
+    // }
+    // navigate("/home");
+    // return response.data;
+    console.log(response)
   } catch (error) {
     console.error(error);
     if(axios.isAxiosError(error)){
