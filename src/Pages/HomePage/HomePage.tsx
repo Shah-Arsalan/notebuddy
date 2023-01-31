@@ -7,10 +7,13 @@ import { getInitialArchivesData, getInitialNoteData } from "../../utils/utils";
 
 const HomePage = () => {
   const { dispatch } = useData();
+  const { state } = useData();
+  const { archives , notes} = state;
   const {token} = useAuth()
   const { filteredData } = useFilter();
   console.log("the data is " , filteredData)
   const [edit  , setEdit] = useState(false);
+  console.log("running on new render")
 
   useEffect(() => {
     getInitialNoteData(token , dispatch); 

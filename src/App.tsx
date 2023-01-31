@@ -18,7 +18,7 @@ function App() {
   const { token } = useAuth();
   return (
     <div className="App">
-      <Nav />
+      {token && <Nav />}
       <Routes>
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/" element={<LandingPage />} />

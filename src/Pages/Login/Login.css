@@ -60,3 +60,29 @@ input[type="email"] {
 .signup-link:hover {
   color: var(--hover);
 }
+
+.error-msg-login{
+  background-color: var(--white);
+  width: max-content;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--red);
+color: black;
+}
+
+.cross-login{
+  cursor: pointer;
+}
+
+/* .error-msg-login{
+  background-color: var(--white);
+  width: max-content;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  position: sticky;
+  bottom: 0px;
+} */

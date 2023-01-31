@@ -10,11 +10,12 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
     try {
       let res = null;
       if (identifier) {
+        console.log("The updated note is ", note)
         res = await axios.post(
-          `/api/notes/${identifier?._id}`,
-          {
-            note,
-          },
+          `https://notebuddy-backend.shaharsalan.repl.co/notes/${identifier?._id}`,
+
+            note
+          ,
           {
             headers: {
               authorization: token,
@@ -24,9 +25,10 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
         
         
       } else {
+        console.log("receivd note" , note)
         res = await axios.post(
-          "/api/notes",
-          { note },
+          "https://notebuddy-backend.shaharsalan.repl.co/notes",
+          note ,
           {
             headers: {
               authorization: token,
@@ -56,7 +58,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
   export const deleteHandler = async (identifier : string | undefined , token : string,  _id : string | undefined, dispatch :  React.Dispatch<ActionType> ) => {
     try {
       if (!identifier) {
-        const res = await axios.delete(`/api/notes/${_id}`, {
+        const res = await axios.delete(`https://notebuddy-backend.shaharsalan.repl.co/notes/delete/${_id}`, {
           headers: {
             authorization: token,
           },
@@ -67,16 +69,24 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
             type: "ENTERNOTE",
             payload: { note: res.data.notes },
           });
+          dispatch({
+            type: "ARCHIVE",
+            payload: { archives: res.data.archives },
+          });
         }
         return res.data;
       } else {
-        const res = await axios.delete(`/api/archives/delete/${_id}`, {
+        const res = await axios.delete(`https://notebuddy-backend.shaharsalan.repl.co/notes/delete/${_id}`, {
           headers: {
             authorization: token,
           },
         });
 
         if (res.status === 200 || res.status === 201) {
+          dispatch({
+            type: "ENTERNOTE",
+            payload: { note: res.data.notes },
+          });
           dispatch({
             type: "ARCHIVE",
             payload: { archives: res.data.archives },
@@ -97,7 +107,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
   export const archiveHandler = async (_id : string | undefined , ele : NoteType , token : string , dispatch : React.Dispatch<ActionType>) => {
     try {
       const res = await axios.post(
-        `/api/notes/archives/${_id}`,
+        `https://notebuddy-backend.shaharsalan.repl.co/notes/archive/${_id}`,
         { ele },
         {
           headers: {
@@ -130,7 +140,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
   export   const archiveRestoreHandler = async (_id : string | undefined, token: string , dispatch : React.Dispatch<ActionType>) => {
     try {
       const res = await axios.post(
-        `/api/archives/restore/${_id}`,
+        `https://notebuddy-backend.shaharsalan.repl.co/notes/archive/restore/${_id}`,
         {},
         {
           headers: {
@@ -161,39 +171,65 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
   };
 
 
-export const loginCall = async (email : string, password : string  , setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any) => {
+export const loginCall = async (email : string, password : string  , setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any , setAppear : React.Dispatch<React.SetStateAction<boolean>> , setMessage :React.Dispatch<React.SetStateAction<string>> ) => {
   
   try {
-    const response = await axios.post("/api/auth/login", {
+    const response = await axios.post("https://notebuddy-backend.shaharsalan.repl.co/users/login", {
       email,
       password, 
     });
+
+
+    if(response.status === 404){
+      console.log("This is 404 error")
+    }
+
 
     if (response.status === 200 || response.status === 201) {
       localStorage.setItem(
         "LoginCredentials",
         JSON.stringify({
-          userToken: response.data.encodedToken,
-          activeUser: response.data.foundUser,
+          userToken: response.data.token,
+          activeUser: response.data.email,
         })
       );
      
-      setUser(response.data.foundUser);
-      setToken(response.data.encodedToken);
+      setUser(response.data.email);
+      setToken(response.data.token);
       navigate("/home");
     }
+
+   
+    console.log("The response is" , response);
     return response.data;
   } catch (error) {
     console.error(error);
       if(axios.isAxiosError(error)){
-        console.log("Thsi is axios error")
+        console.log("This is axios error" , error)
       }
+
+      if (error == "Error: Request failed with status code 404"){
+        console.log("404")
+        setAppear(prev => !prev)
+        setMessage("Email does't exist");
+      }
+
+      if (error == "Error: Request failed with status code 401"){
+        console.log("401");
+        setAppear(prev => !prev);
+        setMessage("Password entered is wrong");
+
+      }
+
+      // Error: Request failed with status code 401
+
       return error;
   }
 };
 
 
-export const signupHandler = async (email  : string , password : string , firstname  : string, lastname : string ,  setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any) => {
+export const signupHandler = async (email  : string , password : string , firstname  : string, lastname : string ,  setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any , setAppear :  React.Dispatch<React.SetStateAction<boolean>> , setMessage : React.Dispatch<React.SetStateAction<string>>) => {
+  console.log("upar");
   try {
     const response = await axios.post("https://notebuddy-backend.shaharsalan.repl.co/users/signup", {
       email,
@@ -201,26 +237,21 @@ export const signupHandler = async (email  : string , password : string , firstn
       firstname,
       lastname,
     });
-    // if (response.status === 200 || response.status === 201) {
-    //   localStorage.setItem(
-      
-    //     "LoginCredentials",
-    //     JSON.stringify({
-    //       userToken: response.data.encodedToken,
-    //       activeUser: response.data.createdUser,
-    //     })
-    //   );
-   
-    //   setUser(response.data.createdUser);
-    //   setToken(response.data.encodedToken);
-    // }
-    // navigate("/home");
-    // return response.data;
-    console.log(response)
+    console.log("in main body" , response)
+    if (response.status === 200 || response.status === 201) {
+    navigate("/login");
+    }
+    
+    return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("in error",error);
     if(axios.isAxiosError(error)){
       console.log("Thsi is axios error")
+    }
+
+    if(error == "Error: Request failed with status code 422"){
+      setAppear(prev => !prev)
+      setMessage("Email Entered is already registered")
     }
     return error;
   }
@@ -235,13 +266,15 @@ export  const logoutHandler = (setUser  : React.Dispatch<any>, setToken :  React
 
 export const getInitialNoteData = async (token : string , dispatch : React.Dispatch<ActionType>) => {
   try {
-      const res = await axios.get("/api/notes", {
+    console.log("inside getInitialNOtedata");
+      const res = await axios.get("https://notebuddy-backend.shaharsalan.repl.co/notes", {
         headers: {
           authorization: token,
         }
       });
 
       if (res.status === 200 || res.status === 201) {
+        console.log("payload is " , res.data.notes)
         dispatch({
           type: "ENTERNOTE",
           payload: { note: res.data.notes },
@@ -260,7 +293,7 @@ export const getInitialNoteData = async (token : string , dispatch : React.Dispa
 
 export const getInitialArchivesData = async (token : string , dispatch : React.Dispatch<ActionType>) => {
   try {
-    const res = await axios.get("/api/archives", {
+    const res = await axios.get("https://notebuddy-backend.shaharsalan.repl.co/notes/archive", {
       headers: {
         authorization: token,
       }
