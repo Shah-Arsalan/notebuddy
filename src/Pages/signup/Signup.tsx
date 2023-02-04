@@ -15,7 +15,9 @@ const Signup = () => {
     confirmpassword: "",
   });
 
+  // const[appear , setAppear] = useState(false);
   const[appear , setAppear] = useState(false);
+  const [message , setMessage ] = useState("");
   const[passwordType , setPasswordType] = useState("password")
 
   // useEffect(() => {
@@ -36,17 +38,22 @@ const Signup = () => {
               className="form"
               onSubmit={(e) => {
                 e.preventDefault();
+                console.log("clicked")
                 if(signUpDetails.password !== signUpDetails.confirmpassword  ){
                   setAppear(prev => !prev)
+                  setMessage("Passwords don't match!")
                 }
                 else if(signUpDetails.email == ""){
                   setAppear(prev => !prev)
+                  setMessage("Enter Email field!")
                 }
                 else if(signUpDetails.firstname == ""){
                   setAppear(prev => !prev)
+                  setMessage("Enter first name field!")
                 }
                 else if(signUpDetails.lastname == ""){
                   setAppear(prev => !prev)
+                  setMessage("Enter last name field!")
                 }else{
                 signupHandler(
                   signUpDetails.email,
@@ -55,7 +62,9 @@ const Signup = () => {
                   signUpDetails.lastname,
                   setUser,
                   setToken,
-                  navigate
+                  navigate,
+                  setAppear,
+                  setMessage
                 );
               }}}
             >
@@ -169,15 +178,16 @@ const Signup = () => {
               <p className="loginLink" onClick={() => navigate("/login")}>Already a user? Login</p>
               </div>
             </form>
-          </div>
-        </div>
-        {appear &&<div className="error-msg">
+            {appear &&<div className="error-msg">
         
-        <p>Ensure all fields are filled and both passwords are same!</p>
+        {message}
         <p className="cross" onClick={() => {
           setAppear(prev => !prev)
         }}>❌</p>
         </div>}
+          </div>
+        </div>
+        
       </div>
     </>
   );

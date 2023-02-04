@@ -3,18 +3,21 @@ import { useAuth, useData } from "../../Contexts";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginCall } from "../../utils/utils";
+import { truncate } from "fs";
 const Login = () => {
   const navigate = useNavigate();
   const [loginDetails, setLoginDetails] = useState({ email: "", password: "" });
+  const[appear , setAppear] = useState(false);
+  const [message , setMessage ] = useState("");
   const { setToken} = useAuth();
   const {setUser }= useAuth();
 
   const guestLoginHandler = () => {
     setLoginDetails({
-      email: "adarshbalika@gmail.com",
-      password: "adarshBalika",
+      email: "demo@gmail.com",
+      password: "a",
     });
-    loginCall("adarshbalika@gmail.com", "adarshBalika123" ,setUser , setToken ,navigate );
+    loginCall("demo@gmail.com", "a" ,setUser , setToken ,navigate , setAppear , setMessage );
   };
 
 
@@ -61,7 +64,7 @@ const Login = () => {
               <button
                 className="primary-button primary-button-login"
                 onClick={() =>
-                  loginCall(loginDetails.email, loginDetails.password, setUser , setToken , navigate)
+                  loginCall(loginDetails.email, loginDetails.password, setUser , setToken , navigate , setAppear , setMessage)
                 }
               >
                 Log In
@@ -83,6 +86,13 @@ const Login = () => {
             >
               Dont have existing accout : Sign Up?
             </div>
+            {appear &&<div className="error-msg-login">
+        
+        <p>{message}</p>
+        <p className="cross-login" onClick={() => {
+          setAppear(prev => !prev)
+        }}>❌</p>
+        </div>}
           </div>
         </div>
       </div>

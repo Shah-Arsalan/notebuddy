@@ -145,7 +145,7 @@ describe("get user service", () => {
 
     test("should login a user", async () => {
 		mockedAxios.post.mockResolvedValue( {data: { username: "mockname"}} );
-		const user = await loginCall("aaa","aasd", () => {} ,()=>{} , ()=>{});
+		const user = await loginCall("aaa","aasd", () => {} ,()=>{} , ()=>{}  ,()=>{} , ()=>{});
 
 
         expect(user).toEqual( { username: "mockname"});
@@ -157,7 +157,7 @@ describe("get user service", () => {
 
         mockedAxios.isAxiosError.mockImplementation((payload) => true)
         
-            const user = await loginCall("aaa","aasd", () => {} ,()=>{} , ()=>{});
+            const user = await loginCall("aaa","aasd", () => {} ,()=>{} , ()=>{}, ()=>{} , ()=>{});
            
             expect(user.response.data).toEqual({ errorMessage: "call unsecessful" });
 
@@ -168,7 +168,7 @@ describe("get user service", () => {
 
     test("should signup a user", async () => {
 		mockedAxios.post.mockResolvedValue( {data: { username: "mockname"}} );
-		const user = await signupHandler("aaa","aasd","aaa","aasd", () => {} ,()=>{} , ()=>{});
+		const user = await signupHandler("aaa","aasd","aaa","aasd", () => {} ,()=>{} , ()=>{} , ()=>{} , ()=>{});
 
 
         expect(user).toEqual( { username: "mockname"});
@@ -180,7 +180,7 @@ describe("get user service", () => {
 
         mockedAxios.isAxiosError.mockImplementation((payload) => true)
         
-            const user = await signupHandler("aaa","aasd","aaa","aasd", () => {} ,()=>{} , ()=>{});
+            const user = await signupHandler("aaa","aasd","aaa","aasd", () => {} ,()=>{} , ()=>{},()=>{} , ()=>{});
            
             expect(user.response.data).toEqual({ errorMessage: "call unsecessful" });
 

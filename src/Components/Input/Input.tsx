@@ -45,6 +45,7 @@ const Input = ({ inputObject , setEdit} : {inputObject : NoteType | undefined , 
           }}
           className="create-note"
           onSubmit={(e) => {
+            console.log("note in fr",note)
             e.preventDefault();
             noteHandler(inputObject,note,token,dispatch);
             setNote({

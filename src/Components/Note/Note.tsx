@@ -29,7 +29,7 @@ const [edit , setEdit] = useState(false);
 
           <div className="note-features">
             <p className="time">{timeCreated}</p>
-            <i onClick={() => editHandler()} className="fas fa-edit"></i>
+           { !identifier && <i onClick={() => editHandler()} className="fas fa-edit"></i>}
             {!identifier ? (
               <i className="fas fa-archive" onClick={() => archiveHandler(_id,ele,token,dispatch)}></i>
             ) : (
