@@ -5,7 +5,7 @@ import { NoteType } from "../../Types/NoteType";
 // import { NoteType } from "Types/NoteType";
 
 const Labels = () => {
-  const { state } = useData();
+  const { state , appear , setAppear } = useData();
   const { notes } = state;
   console.log("length", notes.length);
   const tags = notes.reduce((acc, curr) => {
@@ -18,9 +18,13 @@ const Labels = () => {
   console.log(tags);
   return (
     <>
+    <div>
+    {!appear && <i className="fas fa-bars hamburger" onClick={()=>{ setAppear(prev => !prev); console.log("appear is ", appear)}}></i>}
+    </div>
       <div className="home-container">
-        <Sidebar />
+        <Sidebar appear={appear}/>
         <div className="tags-container">
+       
           {tags.map((tag : string) => {
             const tagNotes = notes.filter((item) => item.tag === tag);
             return (

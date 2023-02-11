@@ -13,7 +13,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
   margin-top: 1rem;
 }
 .tags-container {
@@ -27,4 +26,5 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }

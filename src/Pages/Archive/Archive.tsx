@@ -5,7 +5,7 @@ import { getInitialArchivesData } from "../../utils/utils";
 import { useEffect } from "react";
 
 const Archive = () => {
-  const { state } = useData();
+  const { state , appear , setAppear} = useData();
   const { archives } = state;
   const { dispatch } = useData();
   const {token} = useAuth();
@@ -16,9 +16,13 @@ const Archive = () => {
   }, []);
   return (
     <>
+    <div>
+    {!appear && <i className="fas fa-bars hamburger" onClick={()=>{ setAppear(prev => !prev); console.log("appear is ", appear)}}></i>}
+    </div>
       <div className="home-container">
-        <Sidebar />
+        <Sidebar appear={appear} />
         <div className="archive-container">
+        
           {archives.map((ele) => {
             return <Note key={ele._id} ele={ele} identifier={"archive-note"} />;
           })}
