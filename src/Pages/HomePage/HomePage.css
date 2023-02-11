@@ -27,3 +27,26 @@
   background-color: var(--home-bg-color);
   border: none;
 }
+
+.hamburger{
+  color: var(--white);
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  /* display: none; */
+}
+
+.hamburger:hover{
+  color: var(--hover);
+}
+
+@media only screen and (min-width: 775px) {
+ .scroller{
+  display: block;
+ }
+
+ .hamburger{
+  display: none;
+ }
+   }

@@ -5,6 +5,7 @@
   height: 100vh;
   border-right: 1px solid white;
   border-radius: 1rem;
+  /* display: none; */
 }
 
 .component-child {
@@ -19,3 +20,17 @@
   cursor: pointer;
   color: var(--hover);
 }
+
+.hide{
+  display: none;
+}
+
+.collapse{
+  color: var(--collapse-color);
+}
+
+@media only screen and (min-width: 775px) {
+.collapse{
+  display: none;
+}
+    }
