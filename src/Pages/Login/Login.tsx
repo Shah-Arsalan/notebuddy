@@ -71,14 +71,14 @@ const Login = () => {
               </button>
             </div>
 
-            <div className="input btn-input">
+            {/* <div className="input btn-input">
               <button
                 className="primary-button primary-button-login"
                 onClick={() => guestLoginHandler()}
               >
                 Log In as guest
               </button>
-            </div>
+            </div> */}
 
             <div
               onClick={() => navigate("/signup")}
