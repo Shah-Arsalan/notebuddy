@@ -3,6 +3,7 @@ import { useAuth } from "../../Contexts";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupHandler } from "../../utils/utils";
+import { Loader } from "../../Components/Loader/Loader";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Signup = () => {
   const[appear , setAppear] = useState(false);
   const [message , setMessage ] = useState("");
   const[passwordType , setPasswordType] = useState("password")
+  const[loading , setloading] = useState(false)
 
   // useEffect(() => {
   //   if (token) {
@@ -31,12 +33,14 @@ const Signup = () => {
     <>
       {" "}
       <div className="signup-page">
+        {loading && <Loader/>}
         <div className="login-container">
           <div className="login-inputs login-inputs-signup">
             <h1>Sign Up</h1>
             <form
               className="form"
               onSubmit={(e) => {
+                setloading(prev => !prev)
                 e.preventDefault();
                 console.log("clicked")
                 if(signUpDetails.password !== signUpDetails.confirmpassword  ){
@@ -65,6 +69,7 @@ const Signup = () => {
                   navigate,
                   setAppear,
                   setMessage
+
                 );
               }}}
             >
