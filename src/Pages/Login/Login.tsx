@@ -9,17 +9,17 @@ const Login = () => {
   const navigate = useNavigate();
   const [loginDetails, setLoginDetails] = useState({ email: "", password: "" });
   const[appear , setAppear] = useState(false);
-  const [loading , setloading] = useState(false)
   const [message , setMessage ] = useState("");
   const { setToken} = useAuth();
   const {setUser }= useAuth();
+  const { loading , setLoading} = useData();
 
   const guestLoginHandler = () => {
     setLoginDetails({
       email: "demo@gmail.com",
       password: "a",
     });
-    loginCall("demo@gmail.com", "a" ,setUser , setToken ,navigate , setAppear , setMessage );
+    loginCall("demo@gmail.com", "a" ,setUser , setToken ,navigate , setAppear , setMessage , setLoading );
   };
 
 
@@ -67,8 +67,8 @@ const Login = () => {
               <button
                 className="primary-button primary-button-login"
                 onClick={() => {
-                  loginCall(loginDetails.email, loginDetails.password, setUser , setToken , navigate , setAppear , setMessage)
-                  setloading(prev => !prev)
+                  setLoading(prev => !prev)
+                  loginCall(loginDetails.email, loginDetails.password, setUser , setToken , navigate , setAppear , setMessage , setLoading)
                 }
                   
                 }
