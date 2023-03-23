@@ -171,7 +171,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
   };
 
 
-export const loginCall = async (email : string, password : string  , setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any , setAppear : React.Dispatch<React.SetStateAction<boolean>> , setMessage :React.Dispatch<React.SetStateAction<string>> ) => {
+export const loginCall = async (email : string, password : string  , setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any , setAppear : React.Dispatch<React.SetStateAction<boolean>> , setMessage :React.Dispatch<React.SetStateAction<string>> , setLoading :React.Dispatch<React.SetStateAction<boolean>> ) => {
   
   try {
     const response = await axios.post("https://notebuddy-backend.shaharsalan.repl.co/users/login", {
@@ -196,6 +196,7 @@ export const loginCall = async (email : string, password : string  , setUser  : 
      
       setUser(response.data.email);
       setToken(response.data.token);
+      setLoading(prev => !prev)
       navigate("/home");
     }
 
@@ -212,13 +213,14 @@ export const loginCall = async (email : string, password : string  , setUser  : 
         console.log("404")
         setAppear(prev => !prev)
         setMessage("Email does't exist");
+        setLoading(prev => !prev)
       }
 
       if (error == "Error: Request failed with status code 401"){
         console.log("401");
         setAppear(prev => !prev);
         setMessage("Password entered is wrong");
-
+        setLoading(prev => !prev)
       }
 
       // Error: Request failed with status code 401
@@ -228,7 +230,7 @@ export const loginCall = async (email : string, password : string  , setUser  : 
 };
 
 
-export const signupHandler = async (email  : string , password : string , firstname  : string, lastname : string ,  setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any , setAppear :  React.Dispatch<React.SetStateAction<boolean>> , setMessage : React.Dispatch<React.SetStateAction<string>>) => {
+export const signupHandler = async (email  : string , password : string , firstname  : string, lastname : string ,  setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any , setAppear :  React.Dispatch<React.SetStateAction<boolean>> , setMessage : React.Dispatch<React.SetStateAction<string>> , setLoading :  React.Dispatch<React.SetStateAction<boolean>>) => {
   console.log("upar");
   try {
     const response = await axios.post("https://notebuddy-backend.shaharsalan.repl.co/users/signup", {
@@ -240,6 +242,7 @@ export const signupHandler = async (email  : string , password : string , firstn
     console.log("in main body" , response)
     if (response.status === 200 || response.status === 201) {
     navigate("/login");
+    setLoading(prev => !prev)
     }
     
     return response.data;
@@ -251,6 +254,7 @@ export const signupHandler = async (email  : string , password : string , firstn
 
     if(error == "Error: Request failed with status code 422"){
       setAppear(prev => !prev)
+      setLoading(prev => !prev)
       setMessage("Email Entered is already registered")
     }
     return error;

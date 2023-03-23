@@ -1,5 +1,5 @@
 import "./Signup.css";
-import { useAuth } from "../../Contexts";
+import { useAuth, useData } from "../../Contexts";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupHandler } from "../../utils/utils";
@@ -15,12 +15,12 @@ const Signup = () => {
     lastname: "",
     confirmpassword: "",
   });
-
+const [check , setCheck] = useState(false)
   // const[appear , setAppear] = useState(false);
   const[appear , setAppear] = useState(false);
   const [message , setMessage ] = useState("");
   const[passwordType , setPasswordType] = useState("password")
-  const[loading , setloading] = useState(false)
+  const { loading , setLoading} = useData();
 
   // useEffect(() => {
   //   if (token) {
@@ -40,25 +40,35 @@ const Signup = () => {
             <form
               className="form"
               onSubmit={(e) => {
-                setloading(prev => !prev)
+                setLoading(prev => !prev)
                 e.preventDefault();
                 console.log("clicked")
                 if(signUpDetails.password !== signUpDetails.confirmpassword  ){
                   setAppear(prev => !prev)
                   setMessage("Passwords don't match!")
+                  setLoading(prev => !prev)
                 }
                 else if(signUpDetails.email == ""){
                   setAppear(prev => !prev)
                   setMessage("Enter Email field!")
+                  setLoading(prev => !prev)
                 }
                 else if(signUpDetails.firstname == ""){
                   setAppear(prev => !prev)
                   setMessage("Enter first name field!")
+                  setLoading(prev => !prev)
                 }
                 else if(signUpDetails.lastname == ""){
                   setAppear(prev => !prev)
                   setMessage("Enter last name field!")
-                }else{
+                  setLoading(prev => !prev)
+                }
+                else if(check== false){
+                  setAppear(prev => !prev)
+                  setMessage("You need to accept the terms and conditions!")
+                  setLoading(prev => !prev)
+                }
+                else{
                 signupHandler(
                   signUpDetails.email,
                   signUpDetails.password,
@@ -68,7 +78,8 @@ const Signup = () => {
                   setToken,
                   navigate,
                   setAppear,
-                  setMessage
+                  setMessage,
+                  setLoading
 
                 );
               }}}
@@ -168,7 +179,7 @@ const Signup = () => {
 
               <div className="input forgot-password">
                 <div className="list-item">
-                  <input id="item-1" type="checkbox" name="checkbox-input" />
+                  <input id="item-1" type="checkbox" name="checkbox-input" onChange={() => setCheck(prev => !prev)}/>
                   <label htmlFor="item-1">I accept all terms and conditions</label>
                 </div>
               </div>
