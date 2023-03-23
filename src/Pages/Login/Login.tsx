@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginCall } from "../../utils/utils";
 import { truncate } from "fs";
+import { Loader } from "../../Components/Loader/Loader";
 const Login = () => {
   const navigate = useNavigate();
   const [loginDetails, setLoginDetails] = useState({ email: "", password: "" });
   const[appear , setAppear] = useState(false);
+  const [loading , setloading] = useState(false)
   const [message , setMessage ] = useState("");
   const { setToken} = useAuth();
   const {setUser }= useAuth();
@@ -24,6 +26,7 @@ const Login = () => {
   return (
     <>
       <div className="login-page">
+        {loading && <Loader/>}
         <div className="login-container login-box">
           <div className="login-inputs">
             <h1>Login</h1>
@@ -63,8 +66,11 @@ const Login = () => {
             <div className="input btn-input">
               <button
                 className="primary-button primary-button-login"
-                onClick={() =>
+                onClick={() => {
                   loginCall(loginDetails.email, loginDetails.password, setUser , setToken , navigate , setAppear , setMessage)
+                  setloading(prev => !prev)
+                }
+                  
                 }
               >
                 Log In
