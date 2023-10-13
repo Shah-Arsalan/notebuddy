@@ -16,6 +16,14 @@ import { useAuth } from "./Contexts";
 
 function App() {
   const { token } = useAuth();
+ 
+  // const localStorageItems = JSON.parse(
+  //   localStorage.getItem("LoginCredentials")  || '{"dummy1":"dummy1value", "dummy2":"dummy2value"}'
+  // )  
+
+  // const token = localStorageItems?.token;
+  // console.log("The token is", token)
+  // console.log("re renderig")
   return (
     <div className="App">
       {token && <Nav />}
