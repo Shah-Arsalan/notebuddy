@@ -12,7 +12,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
       if (identifier) {
         console.log("The updated note is ", note)
         res = await axios.post(
-          `https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/notes/${identifier?._id}`,
+          `https://notebuddyapis.onrender.com/notes/${identifier?._id}`,
 
             note
           ,
@@ -27,7 +27,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
       } else {
         console.log("receivd note" , note)
         res = await axios.post(
-          "https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/notes",
+          "https://notebuddyapis.onrender.com/notes",
           note ,
           {
             headers: {
@@ -58,7 +58,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
   export const deleteHandler = async (identifier : string | undefined , token : string,  _id : string | undefined, dispatch :  React.Dispatch<ActionType> ) => {
     try {
       if (!identifier) {
-        const res = await axios.delete(`https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/notes/delete/${_id}`, {
+        const res = await axios.delete(`https://notebuddyapis.onrender.com/notes/delete/${_id}`, {
           headers: {
             authorization: token,
           },
@@ -76,7 +76,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
         }
         return res.data;
       } else {
-        const res = await axios.delete(`https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/notes/delete/${_id}`, {
+        const res = await axios.delete(`https://notebuddyapis.onrender.com/notes/delete/${_id}`, {
           headers: {
             authorization: token,
           },
@@ -107,7 +107,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
   export const archiveHandler = async (_id : string | undefined , ele : NoteType , token : string , dispatch : React.Dispatch<ActionType>) => {
     try {
       const res = await axios.post(
-        `https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/notes/archive/${_id}`,
+        `https://notebuddyapis.onrender.com/notes/archive/${_id}`,
         { ele },
         {
           headers: {
@@ -140,7 +140,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
   export   const archiveRestoreHandler = async (_id : string | undefined, token: string , dispatch : React.Dispatch<ActionType>) => {
     try {
       const res = await axios.post(
-        `https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/notes/archive/restore/${_id}`,
+        `https://notebuddyapis.onrender.com/notes/archive/restore/${_id}`,
         {},
         {
           headers: {
@@ -174,7 +174,7 @@ export const noteHandler = async (identifier : NoteType | undefined , note : Not
 export const loginCall = async (email : string, password : string  , setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any , setAppear : React.Dispatch<React.SetStateAction<boolean>> , setMessage :React.Dispatch<React.SetStateAction<string>> , setLoading :React.Dispatch<React.SetStateAction<boolean>> ) => {
   
   try {
-    const response = await axios.post("https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/users/login", {
+    const response = await axios.post("https://notebuddyapis.onrender.com/users/login", {
       email,
       password, 
     });
@@ -233,7 +233,7 @@ export const loginCall = async (email : string, password : string  , setUser  : 
 export const signupHandler = async (email  : string , password : string , firstname  : string, lastname : string ,  setUser  : React.Dispatch<any>, setToken :  React.Dispatch<any> , navigate :  any , setAppear :  React.Dispatch<React.SetStateAction<boolean>> , setMessage : React.Dispatch<React.SetStateAction<string>> , setLoading :  React.Dispatch<React.SetStateAction<boolean>>) => {
   console.log("upar");
   try {
-    const response = await axios.post("https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/users/signup", {
+    const response = await axios.post("https://notebuddyapis.onrender.com/users/signup", {
       email,
       password,
       firstname,
@@ -271,7 +271,7 @@ export  const logoutHandler = (setUser  : React.Dispatch<any>, setToken :  React
 export const getInitialNoteData = async (token : string , dispatch : React.Dispatch<ActionType>) => {
   try {
     console.log("inside getInitialNOtedata");
-      const res = await axios.get("https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/notes", {
+      const res = await axios.get("https://notebuddyapis.onrender.com/notes", {
         headers: {
           authorization: token,
         }
@@ -297,7 +297,7 @@ export const getInitialNoteData = async (token : string , dispatch : React.Dispa
 
 export const getInitialArchivesData = async (token : string , dispatch : React.Dispatch<ActionType>) => {
   try {
-    const res = await axios.get("https://9e515ad2-743e-4b1a-9194-ebc110d9ca63-00-23wdeennqj4jn.pike.replit.dev/notes/archive", {
+    const res = await axios.get("https://notebuddyapis.onrender.com/notes/archive", {
       headers: {
         authorization: token,
       }
