@@ -15,6 +15,7 @@ const Login = () => {
   const { loading , setLoading} = useData();
 
   const guestLoginHandler = () => {
+    setLoading(prev => !prev);
     setLoginDetails({
       email: "demo@gmail.com",
       password: "a",
@@ -77,14 +78,14 @@ const Login = () => {
               </button>
             </div>
 
-            {/* <div className="input btn-input">
+            <div className="input btn-input">
               <button
                 className="primary-button primary-button-login"
                 onClick={() => guestLoginHandler()}
               >
                 Log In as guest
               </button>
-            </div> */}
+            </div>
 
             <div
               onClick={() => navigate("/signup")}
